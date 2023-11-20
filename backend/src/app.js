@@ -2,10 +2,11 @@ import express, { urlencoded } from "express"
 import cookieParser from "cookie-parser";
 import cors from "cors"
 import AuthRoutes from "./routes/auth.route.js"
+import UserRoutes from "./routes/user.route.js"
 const app =express();
 
 app.use(cors({
-    origin:process.env.Cors_Origin,
+    origin:"http://localhost:5173",
     credentials:true
 }))
 
@@ -15,6 +16,7 @@ app.use(express.static("public"))
 app.use(cookieParser())
 
 app.use("/api/auth",AuthRoutes)
+app.use("/api/user",UserRoutes)
 
 app.use((err,req,res,next)=>{
 

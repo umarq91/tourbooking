@@ -1,23 +1,30 @@
 import React, { useState } from 'react';
-import axios from "axios"
+import { BrowserRouter,Routes ,Route} from 'react-router-dom';
+import SignUpPage from './Pages/auth/SignUpPage';
+import HomePage from "./Pages/HomePage.jsx"
+import SignIn from './Pages/auth/SignInPage.jsx';
+import axios from 'axios';
+import UserContextProvider from './Components/Context/UserContext.jsx';
+axios.defaults.baseURL= "http://127.0.0.1:4000"
+axios.defaults.withCredentials= true
 const App = () => {
 
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Select a Date:
-        <input
-          type="date"
-          value={formData.selectedDate}
-          onChange={handleDateChange}
-        />
-      </label>
+    <UserContextProvider>
 
-      {/* Add other form elements as needed */}
+<BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />}/>
+        <Route path="/register" element={<SignUpPage />}/>
+        <Route path="/register" element={<SignIn />}/>
 
-      <button type="submit">Submit</button>
-    </form>
+          
+          
+     
+      </Routes>
+    </BrowserRouter>
+    </UserContextProvider>
   );
 };
 

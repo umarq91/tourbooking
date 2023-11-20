@@ -8,6 +8,10 @@ const TourSchema = new mongoose.Schema({
     description: String,
     type: String,
     duration: String,
+    views:{
+        type:Number,
+        default:0
+    },
     hotel: String,
    groupSize: Number,
     included: [String],
@@ -20,7 +24,8 @@ const TourSchema = new mongoose.Schema({
         userid: String,
         comment: String
     }]
-},{timestamps:true});
+}
+,{timestamps:true});
 
 const TourModel = mongoose.model("Tours", TourSchema);
 
