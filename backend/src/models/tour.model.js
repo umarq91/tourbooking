@@ -28,12 +28,12 @@ const TourSchema = new mongoose.Schema({
     mapLocation: String,
     highlights: [String],
     thingstokeepinMind:[String],
-    views:Number,
     gallery: [String],
     comments: [{
         userid: String,
         comment: String
-    }]
+    }],
+    postedBy: String
 }
 ,{timestamps:true});
 

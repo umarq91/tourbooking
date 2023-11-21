@@ -4,6 +4,7 @@ import cors from "cors"
 import AuthRoutes from "./routes/auth.route.js"
 import UserRoutes from "./routes/user.route.js"
 import TourRoutes from "./routes/tour.route.js"
+import TourModel from "./models/tour.model.js";
 
 const app =express();
 

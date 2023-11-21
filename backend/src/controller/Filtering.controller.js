@@ -19,7 +19,7 @@ export const tourAllListing = async (req, res, next) => {
   }
 
   if(req.query.days === undefined || req.query.days ==='all'){
-    days={}
+    days={$gt:0}
   }else{
     days = {$lte:req.query.days}
   }
@@ -39,7 +39,7 @@ export const tourAllListing = async (req, res, next) => {
     feefilter = { $lte: queryfee };
   }else{
 
-    feefilter = { $lte: 1000000 };
+    feefilter = { $gt: 0 };
   }
 
   const sort = req.query.sort || 'createdAt';
@@ -81,36 +81,69 @@ export const tourAllListing = async (req, res, next) => {
 
 // Search and Filter
 export const tourListing = async (req, res, next) => {
-
-  let type;
+  let searchTerm;
   let feefilter = {};
+  let type;
+  let days;
 
-  if (req.query.type === undefined || req.query.type === "all") {
-    type = { $in: ['friends', 'family', 'couple', 'culture', 'open'] };
+
+
+  if (req.query.searchTerm !== undefined) {
+    searchTerm = req.query.searchTerm;
   }
 
+  // Check if type is provided in the query
+  if (req.query.type === undefined || req.query.type === "all") {
+    type = { $in: ['friends', 'family', 'Couple', 'culture', 'open'] };
+  }else{
+    type=req.query.type
+  }
+
+  if(req.query.days === undefined || req.query.days ==='all'){
+    days={$gt:0}
+  }else{
+    days = {$lte:req.query.days}
+  }
+
+  // Check if fee is provided in the query and is a valid number
   if (req.query.fee !== undefined) {
-    // If fee is specific, filter listings with fees less than the specified amount
-    feefilter = { $lte: Number(req.query.fee) };
+    let queryfee = req.query.fee;
+
+    // Use $lte to filter listings with a fee less than or equal to the provided value
+    feefilter = { $lte: queryfee };
+  }else{
+    feefilter = { $gt: 0 };
   }
 
   const sort = req.query.sort || 'createdAt';
   const order = req.query.order || 'desc';
 
-  const searchTerm = req.query.searchTerm || '';
+  // Build the query object conditionally based on the presence of query parameters
+  let query = {};
 
-  try {
-    const listings = await TourModel.find({
+  if (Object.keys(req.query).length > 0) {
+
+    // If any query parameters are present, include them in the query
+    query = {
       $or: [
         { location: { $regex: searchTerm, $options: "i" } },
         { tourname: { $regex: searchTerm, $options: "i" } },
         { city: { $regex: searchTerm, $options: "i" } },
+        { description: { $regex: searchTerm, $options: "i" } },
+
       ],
-      fee: feefilter || {},
+      fee: feefilter,
       type,
-    }).sort({
+      'duration.days': days
+    };
+  }
+  console.log(query);
+
+  try {
+    const listings = await TourModel.find(query).sort({
       [sort]: order,
     });
+
     res.json(listings);
   } catch (error) {
     next(error);
