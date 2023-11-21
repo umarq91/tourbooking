@@ -4,10 +4,19 @@ const TourSchema = new mongoose.Schema({
     tourname: String,
     location: String,
     city: String,
-    price: Number,
+    fee: Number,
     description: String,
     type: String,
-    duration: String,
+    duration: {
+        days: {
+          type: Number,
+          required: true,
+        },
+        nights: {
+          type: Number,
+          required: true,
+        },
+      },
     views:{
         type:Number,
         default:0
@@ -17,7 +26,8 @@ const TourSchema = new mongoose.Schema({
     included: [String],
     requirements: [String],
     mapLocation: String,
-    highlights: String,
+    highlights: [String],
+    thingstokeepinMind:[String],
     views:Number,
     gallery: [String],
     comments: [{

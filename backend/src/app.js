@@ -3,6 +3,8 @@ import cookieParser from "cookie-parser";
 import cors from "cors"
 import AuthRoutes from "./routes/auth.route.js"
 import UserRoutes from "./routes/user.route.js"
+import TourRoutes from "./routes/tour.route.js"
+
 const app =express();
 
 app.use(cors({
@@ -17,6 +19,7 @@ app.use(cookieParser())
 
 app.use("/api/auth",AuthRoutes)
 app.use("/api/user",UserRoutes)
+app.use('/api/tour',TourRoutes)
 
 app.use((err,req,res,next)=>{
 
