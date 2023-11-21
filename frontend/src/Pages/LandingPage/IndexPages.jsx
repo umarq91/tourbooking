@@ -1,7 +1,7 @@
 import { useEffect, useState ,useContext } from "react";
 import { Link, Navigate } from "react-router-dom";
 import axios from 'axios'
-import { UserContext } from '../../Components/Context/UserContext'
+import { UserContext } from '../../Context/UserContext'
 
 import LandingPage from "./Hero";
 import SmallCard from "./SmallCard";
@@ -11,18 +11,12 @@ import CustomCarousel from "./Carousel";
 
 
 const IndexPages = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [noresult,setNoResult] = useState(false)
-
-  const [test,setTest] = useState('')
- 
+const {user,setUser} = useContext(UserContext)
   const [err,setErr] = useState(false)
-    const [isFormCleared, setIsFormCleared] = useState(true);
-    const [showsearchLength , setshowSearchLength  ] = useState(false)
-    const [searchLength , setSearchLength  ] = useState(0)
 
-
-
+  let handlesubmit = async()=>{
+    await axios.get('/api/auth/logout')
+  }
 
     const properties = [
 
@@ -64,93 +58,59 @@ const IndexPages = () => {
 
 
 
-
-
-
-
-
-
-  async function handleSearch(e) {
-    e.preventDefault();
-
-  try {
-    const filtered = await axios.post('/search', { query: searchTerm });
-    setPlaces(filtered.data);
-
-    if (filtered.data.length === 0) {
-      setNoResult(true);
-    } else {
-      setNoResult(false); // Reset noresult state when there are search results
-      setSearchLength(filtered.data.length);
-      setshowSearchLength(true);
-    }
-  } catch (error) {
-    console.error("Error occurred during search:", error);
-  }
-  }
-  
-
-  async function handleOnChangeSearch(e) {
-   
-    
-    const newSearchTerm = e.target.value;
-    setSearchTerm(newSearchTerm);
-  
-    if (newSearchTerm === '') {
-      setNoResult(false)
-      setIsFormCleared(true)
-    }
-  console.log(searchTerm);
-  }
-
   return (
     <>
+      <div className="">
+        <div className="coursel md:mb-48 lg:mb-96">
+          <CustomCarousel />
+        </div>
+<button onClick={handlesubmit}>
+Clcik me
+</button>
+{
+  user&&
+  <h1>Test </h1>
+}
+        <main className="max-w-7xl mx-auto px-6 sm:px-16">
+          <section className="pt-6">
+            <h2 className="text-4xl font-semibold pb-3 text-black">
+              {" "}
+              Explore Properties{" "}
+            </h2>
 
- <div className="">
-
-   <div className="coursel md:mb-48 lg:mb-96">
-
-     <CustomCarousel/>
-   </div>
-
-
-
-  
-
-   
-
-    
-<main className="max-w-7xl mx-auto px-6 sm:px-16">
-<section className="pt-6">
-  <h2 className="text-4xl font-semibold pb-3 text-black"> Explore Properties </h2>
-
- 
-              {/* Pull some Data from the Server */}
-     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
-    {properties?.map((item) => (
-      <div key={item.pic}>
-     <SmallCard pic={item.pic} type={item.type} description={item.description}/> 
-      </div>
-    ))}
-    </div>
-  </section>
-
-
+            {/* Pull some Data from the Server */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
+              {properties?.map((item) => (
+                <div key={item.pic}>
+                  <SmallCard
+                    pic={item.pic}
+                    type={item.type}
+                    description={item.description}
+                  />
+                </div>
+              ))}
+            </div>
+          </section>
 
           <section className="">
-            <h2 className="text-4xl font-semibold pt-6 mt-6  text-black"> Look Anywhere </h2>
+            <h2 className="text-4xl font-semibold pt-6 mt-6  text-black">
+              {" "}
+              Look Anywhere{" "}
+            </h2>
             <div className="flex space-x-3 overflow-scroll scrollbar-hide p-3  -ml-3">
-              {
-                Countries?.map(item => (
-                  <MediumCard key={item.img} img={item.img} country={item.country} />
-                ))}
+              {Countries?.map((item) => (
+                <MediumCard
+                  key={item.img}
+                  img={item.img}
+                  country={item.country}
+                />
+              ))}
             </div>
           </section>
         </main>
 
-<Accordian/>
-
-     </div>
+        <Accordian />
+      </div>
     </>
   );
 }

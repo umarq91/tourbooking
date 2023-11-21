@@ -101,6 +101,12 @@ export const getTour = async(req,res)=>{
   const {id} = req.params;
 
   const data = await TourModel.findById(id);
+  
+ // Increment the views property by 1
+ data.views += 1;
+    
+ // Save the updated tour
+ await data.save();
 
   res.status(200).json(data)
 

@@ -5,7 +5,7 @@ import {customError} from "../utils/CustomError.js"
 
 
 
-// Done
+// All Listings
 export const tourAllListing = async (req, res, next) => {
   let feefilter = {};
   let type;
@@ -69,11 +69,6 @@ export const tourAllListing = async (req, res, next) => {
     next(error);
   }
 };
-
-
-
-
-
 
 
 
@@ -149,3 +144,20 @@ export const tourListing = async (req, res, next) => {
     next(error);
   }
 };
+
+
+
+// Most Viewed 
+export const mostViewdTours = async(req,res,next)=>{
+  try {
+    // Find tours and sort by views in descending order
+    const mostViewedTours = await TourModel.find()
+      .sort({ views: -1 })
+      .limit(5); // Adjust the limit as needed
+
+    res.status(200).json(mostViewedTours);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+}

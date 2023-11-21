@@ -1,7 +1,7 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios"
-import { UserContext } from '../../Components/Context/UserContext';
+import { UserContext } from '../../Context/UserContext';
 // import OAuth from '../components/OAuth';
 
 export default function SignUp() {
@@ -19,8 +19,7 @@ export default function SignUp() {
     try {
       setLoading(true);
       setError(false);
-      // const data = await axios.post("/api/auth/login",{email:formData.email,password:formData.password,username:formData.username})
-      await axios.get('/api/auth/logout')
+      const data = await axios.post("/api/auth/signup",{email:formData.email,password:formData.password,username:formData.username})
 
       console.log(data);
       setLoading(false);
@@ -28,12 +27,20 @@ export default function SignUp() {
         setError(true);
         return;
       }
-      navigate('/');
+      navigate('/sign-in');
     } catch (error) {
       setLoading(false);
       setError(true);
     }
   };
+
+useEffect(()=>{
+
+  user && navigate('/')
+
+},[])
+
+
   return (
     <div className='p-3 max-w-lg mx-auto'>
       <h1 className='text-3xl text-center font-semibold my-7'>Sign Up</h1>

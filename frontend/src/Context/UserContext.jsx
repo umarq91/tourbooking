@@ -14,12 +14,13 @@ export default function UserContextProvider({ children }) {
       const getUser =async()=>{
         try {
           const response = await axios.get('/api/auth/profile');
-          const userData = response.data;
-  
-          setUser(userData);
-          console.log(userData); // Use userData here, not user
-          setReady(true);
-          setLoading(false); // Assuming you want to stop loading when the data is ready
+        
+          if (response.status === 200) {
+            const userData = response.data;
+            setUser(userData);
+            setReady(true);
+          } 
+          
         } catch (error) {
           // Handle errors here
           console.error('Error fetching user data:', error);

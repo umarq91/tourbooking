@@ -17,11 +17,11 @@ function CustomCarousel() {
         </Link>
       </div>
 
-      <Carousel style={{ maxWidth: '100%', maxHeight: '100%' }}>
+      <Carousel style={{ maxWidth: '100%', maxHeight: '80%' }}>
         <Carousel.Item>
           <img
             className="object-cover w-full h-full"
-            src={slide1}
+            src={"https://wander-lush.org/wp-content/uploads/2020/01/Phandar-Valley-Beautiful-places-in-Pakistan-Depositphotos.jpg"}
             alt="First slide"
           />
           <Carousel.Caption>

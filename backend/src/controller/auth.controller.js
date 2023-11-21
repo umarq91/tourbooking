@@ -23,7 +23,7 @@ export const signUp = async (req, res, next) => {
 };
 
 export const signIn = async (req, res, next) => {
-  console.log(req.body);
+  console.log(req.body + "===");
 
   let { email, password } = req.body;
   try {
@@ -65,8 +65,6 @@ export const userVerification = (req, res) => {
 
       res.json({ email, _id, username, profile });
     });
-  } else {
-    res.json("null");
   }
 };
 
