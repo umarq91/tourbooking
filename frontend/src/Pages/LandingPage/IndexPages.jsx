@@ -8,40 +8,44 @@ import SmallCard from "./SmallCard";
 import MediumCard from "./MediumCard";
 import Accordian from "./Accordian";
 import CustomCarousel from "./Carousel";
+import Card from "../../Components/Extra/Card";
 
 
 const IndexPages = () => {
 const {user,setUser} = useContext(UserContext)
   const [err,setErr] = useState(false)
 
+  // Data 
+  const [mostviewd,setmostviewed] = useState([])
+
   let handlesubmit = async()=>{
     await axios.get('/api/auth/logout')
   }
 
+
+
     const properties = [
 
-      {type:"Land",
-      "pic": "https://images.pexels.com/photos/46160/field-clouds-sky-earth-46160.jpeg?cs=srgb&dl=pexels-pixabay-46160.jpg&fm=jpg"
-      ,"description": "Land Choice "},
+      {type:"Kashmir",
+      "pic": "https://images.unsplash.com/photo-1598091383021-15ddea10925d?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8a2FzaG1pcnxlbnwwfHwwfHx8MA%3D%3D"
+      ,"description": "Kashmir"},
       
-      {type:"House",
-      "pic": "https://www.mydomaine.com/thmb/CaWdFGvTH4-h1VvG6tukpKuU2lM=/3409x0/filters:no_upscale():strip_icc()/binary-4--583f06853df78c6f6a9e0b7a.jpeg"
-      ,"description": "Your House"},
-      {"type":"Hotel",
-      "pic": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/22/a1/9c/80/essentia-luxury-hotel.jpg?w=700&h=-1&s=1"
-      ,"description": "Hotel You Stayed in"},
-      {"type":"Commercial",
-      "pic": "https://designthoughts.org/wp-content/uploads/2022/11/commercial-building-design-elevation-scaled.jpg"
-      ,"description": "Commercial House"},
-      {"type":"Apartment",
-      "pic": "https://urbanmilwaukee.com/wp-content/uploads/2020/10/element-apartments.jpg"
-      ,"description": "Apartment you live in"},
-      {"type":"Hostel",
+      {type:"Fairy Medows",
+      "pic": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/25/9a/7f/e2/caption.jpg?w=700&h=-1&s=1"
+      ,"description": "Gilgit"},
+      {"type":"Naran Kaghan",
+      "pic": "https://historypak.com/wp-content/uploads/2014/03/Narran-Valley.jpg"
+      ,"description": "Kaghan Valley"},
+      {"type":"Skardu",
+      "pic": "https://guidetopakistan.pk/wp-content/uploads/2021/06/skardu1.jpg"
+      ,"description": "Skardu"},
+      {"type":"Muree",
+      "pic": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Sunset_in_hills_-_Holy_Trinity_Church%2C_Murree.jpg"
+      ,"description": "Muree"},
+      {"type":"Murree",
       "pic": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/25/24/cb/33/8-bed-mixed-gender-dorm.jpg?w=700&h=-1&s=1"
       ,"description": "Your Hostel Experience"},
-      {"type":"Tour Points",
-      "pic": "https://nomadparadise.com/wp-content/uploads/2021/04/pakistan-places-15-1024x683.jpg"
-      ,"description": "Tour points Houses"}
+     
   ]
 
   const Countries = [
@@ -57,25 +61,27 @@ const {user,setUser} = useContext(UserContext)
   ]
 
 
+useEffect(()=>{
+  const getData= async()=>{
+
+ const data = await axios.get('/api/tour/mostviewed')
+    setmostviewed(data)
+  }
+},[])
+
 
   return (
     <>
-      <div className="">
+      <div className="bg-gray-100">
         <div className="coursel md:mb-48 lg:mb-96">
           <CustomCarousel />
         </div>
-<button onClick={handlesubmit}>
-Clcik me
-</button>
-{
-  user&&
-  <h1>Test </h1>
-}
+
         <main className="max-w-7xl mx-auto px-6 sm:px-16">
           <section className="pt-6">
             <h2 className="text-4xl font-semibold pb-3 text-black">
               {" "}
-              Explore Properties{" "}
+             Popular Attractions In Pakistan{" "}
             </h2>
 
             {/* Pull some Data from the Server */}
@@ -92,10 +98,11 @@ Clcik me
             </div>
           </section>
 
+{/* Medium Cards for Most Viewd */}
           <section className="">
             <h2 className="text-4xl font-semibold pt-6 mt-6  text-black">
               {" "}
-              Look Anywhere{" "}
+             Most Viewed Tours{" "}
             </h2>
             <div className="flex space-x-3 overflow-scroll scrollbar-hide p-3  -ml-3">
               {Countries?.map((item) => (
@@ -107,8 +114,24 @@ Clcik me
               ))}
             </div>
           </section>
-        </main>
 
+
+           
+            
+        </main>
+        <section className="mt-10 w-full   p-2"> 
+                  <h1 className="text-center text-5xl font-poppins font-bold my-4"> Most Viewed </h1>
+                  <div className=" grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-10  md:px-14 p-4 ">
+                  <Card/>
+                  <Card/>
+                  <Card/>
+
+                  
+ 
+
+                  </div>
+
+                </section>
         <Accordian />
       </div>
     </>

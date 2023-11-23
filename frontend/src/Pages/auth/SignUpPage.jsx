@@ -21,12 +21,14 @@ export default function SignUp() {
       setError(false);
       const data = await axios.post("/api/auth/signup",{email:formData.email,password:formData.password,username:formData.username})
 
-      console.log(data);
+  
       setLoading(false);
+
       if (data.success === false) {
         setError(true);
         return;
       }
+      
       navigate('/sign-in');
     } catch (error) {
       setLoading(false);

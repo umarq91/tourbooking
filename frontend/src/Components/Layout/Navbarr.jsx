@@ -8,6 +8,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { UserContext } from '../../Context/UserContext';
+import { Link } from 'react-router-dom';
 
 function Navbarr() {
   const { user, setUser } = useContext(UserContext);
@@ -40,14 +41,27 @@ function Navbarr() {
             </Navbar.Collapse>
             <Navbar.Collapse className="justify-content-end">
               <Nav>
-                <Nav.Link href="/">Home</Nav.Link>
-                <Nav.Link href="/tours">Tours</Nav.Link>
+                <div className="flex items-center gap-4 px-4 text-gray-600">
+
+              <Link to="/"> Home</Link>
+              <Link to="/Tours"> Tours</Link>
+                </div>
+
                 {!user ?
                   <Nav.Link href="/sign-in">Sign in</Nav.Link>
                   : (
+                    
                     <NavDropdown title="Profile" id="navbarNavDropdown">
-                      <NavDropdown.Item href="/account">Account</NavDropdown.Item>
-                      <NavDropdown.Item href="/posttour">Post A Tour</NavDropdown.Item>
+                      <div className="flex flex-col px-3 gap-2">
+                      <Link to="/account"> Account</Link>
+                    
+                      <Link to="/profile"> Profile</Link>
+
+                      <Link to="/posttour"> Post A Tour</Link>
+
+
+                    </div>
+                      
                       <NavDropdown.Divider />
                       <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
                     </NavDropdown>

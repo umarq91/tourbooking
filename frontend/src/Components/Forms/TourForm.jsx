@@ -6,7 +6,7 @@ const TourForm = () => {
 
   return (
     <>
-  <div className='lg:p-24 max-w-[95%]'>
+  <div className='lg:p-24 max-w-[95%] bg-white'>
 
   <form className=''>
       <div className="relative z-0 w-full mb-6 group">

@@ -8,8 +8,13 @@ import IndexPages from "./Pages/LandingPage/IndexPages.jsx"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbarr from './Components/Layout/Navbarr.jsx';
 import Header from './Components/Layout/Navbar.jsx';
+import ProfilePage from './Pages/ProfilePage.jsx';
+import PrivateRoutes from './Context/PrivateRoutes.jsx';
+import AddTour from './Pages/account/AddTour.jsx';
 axios.defaults.baseURL= "http://127.0.0.1:4000"
 axios.defaults.withCredentials= true
+
+
 const App = () => {
 
   return (
@@ -21,6 +26,13 @@ const App = () => {
         <Route path="/" element={<IndexPages />}/>
         <Route path="/sign-up" element={<SignUpPage />}/>
         <Route path="/sign-in" element={<SignIn />}/>
+
+    <Route  element={<PrivateRoutes />}>
+        <Route path="/profile" element={<ProfilePage />}/>
+        <Route path="/account/addtour" element={<AddTour />}/>
+
+    </Route>
+
 
           
           

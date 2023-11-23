@@ -4,7 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 export default function SignIn() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({});
-
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
 
 
@@ -18,15 +19,32 @@ export default function SignIn() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
+      setError(false);
       const data = await axios.post("/api/auth/login", {
         email: formData.email,
         password: formData.password,
       });
-      window.location.href = '/'; // Redirect to the index page
-    
-    } catch (error) {}
-  };
 
+      if (data.success === false) {
+        setError(true);
+        setLoading(false)
+        return;
+      }
+      
+  window.location.href = '/'; // Redirect to the index page
+
+      
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+      setError(true);
+    }
+
+
+
+  };
+  
 
   return (
     <div className='p-3 max-w-lg mx-auto'>
@@ -50,7 +68,7 @@ export default function SignIn() {
          
           className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'
         >
-          Sign In
+         {loading ? 'Loading...': 'Sign In'}
         </button>
         {/* <OAuth /> */}
       </form>
@@ -61,7 +79,7 @@ export default function SignIn() {
         </Link>
       </div>
       <p className='text-red-700 mt-5'>
-        'Something went wrong!' 
+        {error&& 'Something went wrong!' }
       </p>
     </div>
   );
