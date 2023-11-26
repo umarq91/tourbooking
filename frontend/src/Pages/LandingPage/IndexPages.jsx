@@ -9,6 +9,7 @@ import MediumCard from "./MediumCard";
 import Accordian from "./Accordian";
 import CustomCarousel from "./Carousel";
 import Card from "../../Components/Extra/Card";
+import Hero from "../../Components/Layout/Hero";
 
 
 const IndexPages = () => {
@@ -73,9 +74,11 @@ useEffect(()=>{
   return (
     <>
       <div className="bg-gray-100">
-        <div className="coursel md:mb-48 lg:mb-96">
+        {/* <div className="coursel md:mb-48 lg:mb-96">
           <CustomCarousel />
-        </div>
+        </div> */}
+
+        <Hero/>
 
         <main className="max-w-7xl mx-auto px-6 sm:px-16">
           <section className="pt-6">
@@ -99,7 +102,7 @@ useEffect(()=>{
           </section>
 
 {/* Medium Cards for Most Viewd */}
-          <section className="">
+          {/* <section className="">
             <h2 className="text-4xl font-semibold pt-6 mt-6  text-black">
               {" "}
              Most Viewed Tours{" "}
@@ -113,7 +116,7 @@ useEffect(()=>{
                 />
               ))}
             </div>
-          </section>
+          </section> */}
 
 
            
@@ -132,7 +135,7 @@ useEffect(()=>{
                   </div>
 
                 </section>
-        <Accordian />
+       
       </div>
     </>
   );
