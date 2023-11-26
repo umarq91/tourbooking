@@ -6,10 +6,11 @@ import { UserContext } from '../../Context/UserContext'
 import LandingPage from "./Hero";
 import SmallCard from "./SmallCard";
 import MediumCard from "./MediumCard";
-import Accordian from "./Accordian";
+
 import CustomCarousel from "./Carousel";
 import Card from "../../Components/Extra/Card";
 import Hero from "../../Components/Layout/Hero";
+
 
 
 const IndexPages = () => {
@@ -82,7 +83,7 @@ useEffect(()=>{
 
         <main className="max-w-7xl mx-auto px-6 sm:px-16">
           <section className="pt-6">
-            <h2 className="text-4xl font-semibold pb-3 text-black">
+            <h2 className="text-4xl font-semibold pb-3 text-black font-poppins">
               {" "}
              Popular Attractions In Pakistan{" "}
             </h2>
@@ -122,20 +123,42 @@ useEffect(()=>{
            
             
         </main>
-        <section className="mt-10 w-full   p-2"> 
-                  <h1 className="text-center text-5xl font-poppins font-bold my-4"> Most Viewed </h1>
-                  <div className=" grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-10  md:px-14 p-4 ">
-                  <Card/>
-                  <Card/>
-                  <Card/>
 
-                  
- 
 
-                  </div>
+        {/* Most Viewed */}
+        <section className="mt-10 w-full p-2">
+  <h1 className="text-center text-3xl font-poppins font-semibold my-4 relative">
+    <div className="bg-green-500 inline-block p-2 px-4 text-white">
+      Most Viewed Tours
+    </div>
+    <h3 className="text-lg"> Take a Look At Most Viewed Tours</h3>
+  </h1>
+  <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-10 md:px-14 p-4">
+    <Card />
+    <Card />
+    <Card />
+  </div>
+</section>
 
-                </section>
        
+          {/* Upcoming */}
+          <section className="mt-10 w-full p-2">
+  <h1 className="text-center text-3xl font-poppins font-semibold my-4 relative">
+    <div className="bg-green-500 inline-block p-2 px-4 text-white">
+      UpComing Tours Tours
+    </div>
+    <h3 className="text-lg"> Take a Look At Most Viewed Tours</h3>
+  </h1>
+  <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-10 md:px-14 p-4">
+    <Card />
+    <Card />
+    <Card />
+    <Card />
+    <Card />
+    <Card />
+
+  </div>
+</section>
       </div>
     </>
   );
