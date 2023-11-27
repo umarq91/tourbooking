@@ -276,7 +276,7 @@ const  [addedPhotos,setAddedPhotos] = useState('')
 
 {/* Photos */}
 
-<PhotoUplaoder addedPhotos={addedPhotos}/>
+<PhotoUplaoder addedPhotos={addedPhotos} onChange={setAddedPhotos}/>
 
 
 

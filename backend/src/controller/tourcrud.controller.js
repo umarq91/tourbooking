@@ -1,7 +1,8 @@
 
 import TourModel from "../models/tour.model.js"
 import {customError} from "../utils/CustomError.js"
-
+import {upload} from "../middlewares/multer.middleware.js"
+import { uploadOnCloudinary } from "../utils/Cloudinary.js"
 
 
 // Add Tour
@@ -111,3 +112,36 @@ export const getTour = async(req,res)=>{
   res.status(200).json(data)
 
 }
+
+
+
+
+export const UploadItems = async (req, res, next) => {
+  const uploadedFiles = [];
+  const files = req.files;
+
+  if (!files || files.length === 0) {
+    return res.status(400).json({ error: "No images were provided" });
+  }
+
+  const cloudinaryUrls = [];
+
+  try {
+    for (const file of files) {
+      const localPath = file.path;
+      console.log(localPath);
+
+      const cloudinaryUrl = await uploadOnCloudinary(localPath);
+
+      if (cloudinaryUrl) {
+        cloudinaryUrls.push(cloudinaryUrl);
+      }
+    }
+  } catch (error) {
+    console.log("error");
+  }
+
+  // Send the array of Cloudinary URLs in the response
+
+  res.status(200).json(cloudinaryUrls);
+};
