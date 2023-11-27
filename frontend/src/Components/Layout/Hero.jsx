@@ -24,7 +24,7 @@ const Hero = () => {
       }}
     >
       <h1 className='font-bold font-poppins text-white text-5xl md:text-6xl lg:text-7xl'>Explore Pakistan</h1>
-      <p className='font-medium font-poppins text-white text-xl md:text-2xl mt-1'>With  <span className='text-orange-800 font-bold'> World Of Adventure </span>Tour Agency</p>
+      <p className='font-medium font-poppins text-white text-xl md:text-2xl mt-1'>With  <span className='text-orange-400 font-bold'> World Of Adventure </span>Tour Agency</p>
    
     </div>
   </div>

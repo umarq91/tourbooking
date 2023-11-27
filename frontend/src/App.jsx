@@ -5,12 +5,11 @@ import SignIn from './Pages/auth/SignInPage.jsx';
 import axios from 'axios';
 import UserContextProvider from './Context/UserContext.jsx';
 import IndexPages from "./Pages/LandingPage/IndexPages.jsx"
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbarr from './Components/Layout/Navbarr.jsx';
 import Header from './Components/Layout/Navbar.jsx';
 import ProfilePage from './Pages/ProfilePage.jsx';
 import PrivateRoutes from './Context/PrivateRoutes.jsx';
 import AddTour from './Pages/account/AddTour.jsx';
+import Navbar from './Components/Layout/Navbar.jsx';
 axios.defaults.baseURL= "http://127.0.0.1:4000"
 axios.defaults.withCredentials= true
 
@@ -21,7 +20,7 @@ const App = () => {
     <UserContextProvider>
 
 <BrowserRouter>
-<Navbarr  />
+<Navbar  />
       <Routes>
         <Route path="/" element={<IndexPages />}/>
         <Route path="/sign-up" element={<SignUpPage />}/>

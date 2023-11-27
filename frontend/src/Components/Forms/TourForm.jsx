@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-
+import PhotoUplaoder from "../Extra/PhotoUploader"
 const TourForm = () => {
   const [type, setType] = useState('');
   const [duration,setDuration] = useState('')
-
+const  [addedPhotos,setAddedPhotos] = useState('')
   return (
     <>
   <div className='lg:p-24 max-w-[95%] bg-white'>
@@ -274,8 +274,9 @@ const TourForm = () => {
 
 
 
+{/* Photos */}
 
-
+<PhotoUplaoder addedPhotos={addedPhotos}/>
 
 
 

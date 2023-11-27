@@ -7,7 +7,6 @@ import TourRoutes from "./routes/tour.route.js"
 import TourModel from "./models/tour.model.js";
 
 const app =express();
-
 app.use(cors({
     origin:"http://localhost:5173",
     credentials:true
@@ -18,9 +17,28 @@ app.use(urlencoded({extended:true}))
 app.use(express.static("public"))
 app.use(cookieParser())
 
+
+
+
+
+import multer from "multer";
+import fs from "fs"
+
+
+
+
+
+
+
 app.use("/api/auth",AuthRoutes)
 app.use("/api/user",UserRoutes)
 app.use('/api/tour',TourRoutes)
+
+
+
+
+
+
 
 app.use((err,req,res,next)=>{
 

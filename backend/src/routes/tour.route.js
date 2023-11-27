@@ -16,4 +16,6 @@ router.put('/update/:id',verifyToken,tourUpdate)
 router.delete('/delete/:id',verifyToken,tourDelete)
 
 
+
+
 export default router
