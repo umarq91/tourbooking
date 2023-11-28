@@ -96,7 +96,7 @@ const Slick = () => {
         
         
       
-        <div className="px-2 overflow-hidden border border-slate-200 group py-8">
+        <div key={item.type} className="px-2 overflow-hidden border border-slate-200 group py-8">
             <div className="overflow-hidden relative">
                 <img src={item.pic} className="h-[500px] w-[510px] object-cover hover:scale-105 hover:rotate-2 transition-all  duration-700"/>
                 <Link to={`/search?searchTerm=${item.type}`} className="absolute top-1/2 left-1/2 h-14 w-14 flex  justify-center items-center scale-0 bg-white -translate-x-1/2 -translate-y-1/2    rounded-full  group-hover:scale-100     transition all" 

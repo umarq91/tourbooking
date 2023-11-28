@@ -69,7 +69,7 @@ useEffect(()=>{
         <main className="max-w-7xl mx-auto px-6 sm:px-16">
      
           <section className="pt-6">
-            <h2 className="text-4xl font-[600] font-poppins text-center  pb-3 text-black">
+            <h2 className="text-4xl font-[600] font-poppins text-center   text-black">
               {" "}
              Popular Attractions In Pakistan{" "}
             </h2>
@@ -122,7 +122,7 @@ useEffect(()=>{
     <div className="bg-green-500 inline-block p-2 px-4 text-white font-bold">
       Most Viewed Tours
     </div>
-    <h3 className="text-lg"> Take a Look At Most Viewed Tours</h3>
+    <p className="text-lg"> Take a Look At Most Viewed Tours</p>
   </h1>
   <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-10 md:px-14 p-4">
     <Card />
