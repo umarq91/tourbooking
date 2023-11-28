@@ -1,4 +1,4 @@
-import { useEffect, useState ,useContext } from "react";
+import React, { useEffect, useState ,useContext } from "react";
 import { Link, Navigate } from "react-router-dom";
 import axios from 'axios'
 import { UserContext } from '../../Context/UserContext'
@@ -8,7 +8,7 @@ import SmallCard from "./SmallCard";
 import MediumCard from "./MediumCard";
 import Card from "../../Components/Extra/Card";
 import Hero from "../../Components/Layout/Hero";
-
+import ReactSlick from "./AttractionsSlider";
 
 
 const IndexPages = () => {
@@ -60,22 +60,26 @@ useEffect(()=>{
 
   return (
     <>
-      <div className="bg-gray-100">
+      <div className="bg-gray-200">
         {/* <div className="coursel md:mb-48 lg:mb-96">
           <CustomCarousel />
         </div> */}
 
         <Hero/>
-
         <main className="max-w-7xl mx-auto px-6 sm:px-16">
+     
           <section className="pt-6">
-            <h2 className="text-4xl font-semibold pb-3 text-black font-poppins">
+            <h2 className="text-4xl font-[600] font-poppins text-center  pb-3 text-black">
               {" "}
              Popular Attractions In Pakistan{" "}
             </h2>
+            
+        <p className="text-center">
+    Here are some Cool Attraction point Ideas for your Next Tour
+        </p>
 
             {/* Pull some Data from the Server */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
+            {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
               {properties?.map((item) => (
                 <div key={item.pic}>
                   <SmallCard
@@ -85,7 +89,8 @@ useEffect(()=>{
                   />
                 </div>
               ))}
-            </div>
+            </div> */}
+               <ReactSlick/>
           </section>
 
 {/* Medium Cards for Most Viewd */}
@@ -113,8 +118,8 @@ useEffect(()=>{
 
         {/* Most Viewed */}
         <section className="mt-10 w-full p-2">
-  <h1 className="text-center text-3xl font-poppins font-semibold my-4 relative">
-    <div className="bg-green-500 inline-block p-2 px-4 text-white">
+  <h1 className="text-center text-3xl font-poppins  my-4 relative">
+    <div className="bg-green-500 inline-block p-2 px-4 text-white font-bold">
       Most Viewed Tours
     </div>
     <h3 className="text-lg"> Take a Look At Most Viewed Tours</h3>
