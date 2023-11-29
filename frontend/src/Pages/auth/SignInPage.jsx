@@ -6,7 +6,7 @@ export default function SignIn() {
   const [formData, setFormData] = useState({});
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
-
+const [errorr,setErrorr] = useState('')
 
 
 
@@ -21,33 +21,33 @@ export default function SignIn() {
     try {
       setLoading(true);
       setError(false);
-      const data = await axios.post("/api/auth/login", {
+      const response = await axios.post("/api/auth/login", {
         email: formData.email,
         password: formData.password,
       });
-
+  
+      const data = response.data; // assuming your response object has a 'data' property
+  
       if (data.success === false) {
+        console.log("errorrrrrrr");
         setError(true);
-        setLoading(false)
-        return;
+        setLoading(false);
+        setErrorr(data.message); // Set the error message here
+      } else {
+        window.location.href = '/'; // Redirect to the index page on successful login
       }
-      
-  window.location.href = '/'; // Redirect to the index page
-
-      
+  
     } catch (error) {
-      console.log(error);
       setLoading(false);
       setError(true);
+      setErrorr(error.response.data.message);
     }
-
-
-
   };
+  
   
 
   return (
-    <div className='p-3 max-w-lg mx-auto'>
+    <div className='p-3 max-w-lg mx-auto mt-20'>
       <h1 className='text-3xl text-center font-semibold my-7'>Sign In</h1>
       <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
         <input
@@ -79,7 +79,7 @@ export default function SignIn() {
         </Link>
       </div>
       <p className='text-red-700 mt-5'>
-        {error&& 'Something went wrong!' }
+        {error&& errorr }
       </p>
     </div>
   );

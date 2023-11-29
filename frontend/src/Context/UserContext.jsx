@@ -14,16 +14,17 @@ export default function UserContextProvider({ children }) {
       const getUser =async()=>{
         try {
           const response = await axios.get('/api/auth/profile');
-        
+          
           if (response.status === 200) {
             const userData = response.data;
+            console.log(userData);
             setUser(userData);
             setReady(true);
-          } 
+          }
           
         } catch (error) {
           // Handle errors here
-          console.error('Error fetching user data:', error);
+          console.log("Backend Not connected properly");
           setLoading(false); // Stop loading even if there's an error
         }
       }
