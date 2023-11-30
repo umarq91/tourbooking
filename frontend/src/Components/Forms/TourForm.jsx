@@ -51,20 +51,8 @@ const TourForm = () => {
     }
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    if (name === 'type') {
-      setType(value);
-    } else if (name === 'duration') {
-      // Convert the selected value to an array of numbers
-      const [nights, days] = value.split(' ').map(Number);
-      setNights(nights);
-      setDays(days);
-      
-    }
-  };
+ 
 
-console.log(days);
   return (
     <>
   <div className='lg:p-24 w-full max-w-screen-lg mx-auto bg-white'>
