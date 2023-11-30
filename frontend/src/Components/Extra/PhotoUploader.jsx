@@ -63,9 +63,11 @@ const PhotoUploader = ({addedPhotos,onChange}) => {
 
     return ( 
         <>
+        <h1 className="text-center text-bold font-poppins text-3xl my-4"> Gallery </h1>
            <div className='flex gap-2'>
-                        <input type='text' value={photoLink} onChange={(e)=>setPhotoLink(e.target.value)} placeholder='Add using link...jpg'/> 
-                        <button onClick={addPhotoByLink} className='bg-white  font-bold boeswe px-4 rounded-2xl'>Add&nbsp;Photo</button>
+                
+                        <input type='text' className="w-full" value={photoLink} onChange={(e)=>setPhotoLink(e.target.value)} placeholder='Add using link...jpg'/> 
+                        <button onClick={addPhotoByLink} className='bg-blue-500 text-white  font-bold boeswe px-4 rounded-2xl'>Add&nbsp;Photo</button>
                     </div>
 
                     <input type='file' className='hidden' />

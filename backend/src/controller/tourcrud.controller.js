@@ -7,30 +7,54 @@ import { uploadOnCloudinary } from "../utils/Cloudinary.js"
 
 // Add Tour
 
-export const addTour = async(req,res,next)=>{
- 
-  const {id} = req.user
+export const addTour = async (req, res, next) => {
+  const { id } = req.user;
   console.log(id);
-    try {
-        
-        let {tourname,location,city,fee,description,type,hotel,groupSize,included,thingstokeepinMind,requirements,mapLocation,highlights,gallery,duration} = req.body;
-     let   requirementsupdated= req.body.requirements.split(',').map((term) => term.trim());
-       let   highlightsupdated= req.body.requirements.split(',').map((term) => term.trim());
-       let  thingstokeepinMindupdated= req.body.thingstokeepinMind.split(',').map((term) => term.trim());
-      let   includedupdated = req.body.included.split(',').map((term) => term.trim());
+  let {
+    tourname,
+    location,
+    city,
+    fee,
+    description,
+    type,
+    hotel,
+    groupSize,
+    included,
+    thingstokeepinMind,
+    requirements,
+    mapLocation,
+    highlights,
+    addedPhotos,
+    duration,
+  } = req.body;
 
-  
-      const added =await TourModel.create({
-       ...req.body,requirements:requirementsupdated,highlights:highlightsupdated,thingstokeepinMind:thingstokeepinMindupdated,included:includedupdated,postedBy:id
-      });
-      res.status(200).json({message:"Tour is Added"});
+  try {
+    
+    let requirementsUpdated = requirements.split(',').map((term) => term.trim());
+    let highlightsUpdated = highlights.split(',').map((term) => term.trim());
+    let thingstokeepinMindUpdated = thingstokeepinMind.split(',').map((term) => term.trim());
+    let includedUpdated = included.split(',').map((term) => term.trim());
+console.log(req.body);
+    const added = await TourModel.create({
+      ...req.body,
+      gallery: addedPhotos,
+      requirements: requirementsUpdated,
+      highlights: highlightsUpdated,
+      thingstokeepinMind: thingstokeepinMindUpdated,
+      included: includedUpdated,
+      postedBy: id,
+      duration: {
+        days: duration.days,
+        nights: duration.nights,
+      },
+    });
 
+    res.status(200).json(ApiResonse(200, added, "Tour added"));
+  } catch (error) {
+    next(error);
+  }
+};
 
-     
-    } catch (error) {
-        next(error)
-    }
-}
 
 
 // Update Tour

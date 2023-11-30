@@ -40,7 +40,7 @@ const [errorr,setErrorr] = useState('')
     } catch (error) {
       setLoading(false);
       setError(true);
-      setErrorr(error.response.data.message);
+      setErrorr(error.response.data.message || "something went Wrong");
     }
   };
   

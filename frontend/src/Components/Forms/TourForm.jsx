@@ -1,16 +1,79 @@
 import React, { useState } from 'react';
 import PhotoUplaoder from "../Extra/PhotoUploader"
+import axios from 'axios';
 const TourForm = () => {
   const [type, setType] = useState('');
-  const [duration,setDuration] = useState('')
-const  [addedPhotos,setAddedPhotos] = useState('')
+  const  [addedPhotos,setAddedPhotos] = useState('')
+  const [tourname,setTourname] = useState('')
+   const [location,setLocation] = useState('')
+   const [groupSize,setGroupSize] = useState(0)
+   const [fee,setFee] = useState(0)
+   const [city,setCity] = useState('')
+   const [hotel,setHotel] = useState('')
+   const [mapLocation,setMapLocation] = useState('')
+   const [description,setDescription] = useState('')
+  const [requirements,setRequirements] = useState('')
+  const [thingstokeepinMind,setthingstokeepinmind] = useState('')
+  const [included,setIncluded] = useState('')
+  const [highlights,setHighlights] = useState('')
+  const [days, setDays] = useState(0);
+  const [nights, setNights] = useState(0);
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("/api/tour/add", {
+        type,
+        duration: { days, nights },
+        addedPhotos,
+        tourname,
+        location,
+        groupSize,
+        fee,
+        city,
+        hotel,
+        mapLocation,
+        description,
+        requirements,
+        thingstokeepinMind,
+        included,
+        
+        highlights,
+      });
+      console.log(response.data);
+  
+      if (response.data.success === 'true') {
+        window.location.href = '/';
+      }
+    } catch (error) {
+      console.error("Error adding tour:", error);
+      // Handle the error here
+    }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    if (name === 'type') {
+      setType(value);
+    } else if (name === 'duration') {
+      // Convert the selected value to an array of numbers
+      const [nights, days] = value.split(' ').map(Number);
+      setNights(nights);
+      setDays(days);
+      
+    }
+  };
+
+console.log(days);
   return (
     <>
-  <div className='lg:p-24 max-w-[95%] bg-white'>
+  <div className='lg:p-24 w-full max-w-screen-lg mx-auto bg-white'>
 
   <form className=''>
       <div className="relative z-0 w-full mb-6 group">
         <input
+        value={tourname}
+        onChange={(e)=>setTourname(e.target.value)}
           type="tour_name"
           name="tour_name"
           id="tour_name"
@@ -31,7 +94,8 @@ const  [addedPhotos,setAddedPhotos] = useState('')
         <div className="relative z-0 w-full mb-6 group">
           <input
             type="tel"
-            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+            value={location}
+            onChange={(e)=>setLocation(e.target.value)}
             name="Location"
             id="Location"
             className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -55,6 +119,8 @@ const  [addedPhotos,setAddedPhotos] = useState('')
             className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
             placeholder=" "
             required
+            value={city}
+            onChange={(e)=>setCity(e.target.value)}
           />
           <label
             htmlFor="City"
@@ -75,12 +141,14 @@ const  [addedPhotos,setAddedPhotos] = useState('')
             className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
             placeholder=" "
             required
+            value={fee}
+            onChange={(e)=>setFee(e.target.value)}
           />
           <label
             htmlFor="floating_first_name"
             className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
           >
-            First name
+            Fee Per Person
           </label>
         </div>
 
@@ -92,6 +160,8 @@ const  [addedPhotos,setAddedPhotos] = useState('')
             className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
             placeholder=" "
             required
+            value={groupSize}
+            onChange={(e)=>setGroupSize(e.target.value)}
           />
           <label
             htmlFor="Group Size"
@@ -144,52 +214,70 @@ const  [addedPhotos,setAddedPhotos] = useState('')
           <h1 className='font-semibold'>Duration </h1>
           <div className="grid">
 
-        <label>
-        <input
-          type="radio"
-          value="2 Nights - 3 Days"
-          checked={duration === '2 Nights - 3 Days'}
-          onChange={()=>setDuration(event.target.value)}
-        />
-       2 Nights - 3 Days
-      </label>
+          <label>
+  <input
+    type="radio"
+    value="2 Nights - 3 Days"
+    checked={days === 3}
+    onChange={() => {
+      setDays(3);
+      setNights(2);
+    }}
+  />
+  2 Nights - 3 Days
+</label>
 
-      <label>
-        <input
-          type="radio"
-          value="3 Nights - 4 Days"
-          checked={duration === '3 Nights - 4 Days'}
-          onChange={()=>setDuration(event.target.value)}
-        />
-       3 Nights - 4 Days
-      </label>
-       <label>
-        <input
-          type="radio"
-          value="4 Nights - 5 Days"
-          checked={duration === '4 Nights - 5 Days'}
-          onChange={()=>setDuration(event.target.value)}
-        />
-       4 Nights - 5 Days
-      </label>
-      <label>
-        <input
-          type="radio"
-          value="5 Nights - 6 Days"
-          checked={duration === '5 Nights - 6 Days'}
-          onChange={()=>setDuration(event.target.value)}
-        />
-      5 Nights - 6 Days
-      </label>
-      <label>
-        <input
-          type="radio"
-          value="6 Nights - 7 Days"
-          checked={duration === '6 Nights - 7 Days'}
-          onChange={()=>setDuration(event.target.value)}
-        />
-      6 Nights - 7 Days
-      </label>
+<label>
+  <input
+    type="radio"
+    value="3 Nights - 4 Days"
+    checked={days === 4}
+    onChange={() => {
+      setDays(4);
+      setNights(3);
+    }}
+  />
+  3 Nights - 4 Days
+</label>
+
+<label>
+  <input
+    type="radio"
+    value="4 Nights - 5 Days"
+    checked={days === 5}
+    onChange={() => {
+      setDays(5);
+      setNights(4);
+    }}
+  />
+  4 Nights - 5 Days
+</label>
+
+<label>
+  <input
+    type="radio"
+    value="5 Nights - 6 Days"
+    checked={days === 6}
+    onChange={() => {
+      setDays(6);
+      setNights(5);
+    }}
+  />
+  5 Nights - 6 Days
+</label>
+
+<label>
+  <input
+    type="radio"
+    value="6 Nights - 7 Days"
+    checked={days === 7}
+    onChange={() => {
+      setDays(7);
+      setNights(6);
+    }}
+  />
+  6 Nights - 7 Days
+</label>
       </div>
         </div>
       </div>
@@ -203,6 +291,8 @@ const  [addedPhotos,setAddedPhotos] = useState('')
             type="text"
             name="Hotel"
             id="Hotel"
+            value={hotel}
+            onChange={(e)=>setHotel(e.target.value)}
             className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
             placeholder=""
             required
@@ -223,6 +313,8 @@ const  [addedPhotos,setAddedPhotos] = useState('')
             className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
             placeholder=" "
             required
+            value={mapLocation}
+            onChange={(e)=>setMapLocation(e.target.value)}
           />
           <label
             htmlFor="Map"
@@ -238,29 +330,41 @@ const  [addedPhotos,setAddedPhotos] = useState('')
 {/* Description Text-Area */}
 <div className="relative z-0 w-full mb-6 group">
 <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-<textarea id="message" rows="7" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write Detailed Description about a Tour!"></textarea>
+<textarea    value={description}
+        onChange={(e)=>setDescription(e.target.value)} id="message" rows="7" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write Detailed Description about a Tour!"></textarea>
       </div>
 
+<hr/>
+<div className='my-10'> 
 
+<h2 className='text-center text-2xl font-poppins '>
+   Keep this in Mind
+    </h2>
+    <p className='text-center text-sm'> All the sections below are in points format , put comma after every point eg► point no 1 , point no 2, point no 3 </p>
+</div>
+    <hr/>
 
 {/* Requirements */}
 <div className="relative z-0 w-full mb-6 group">
 <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Requirements</label>
-<textarea id="message" rows="5" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write All the necessary Requirements that will be needing for this Tour"></textarea>
+<textarea    value={requirements}
+        onChange={(e)=>setRequirements(e.target.value)} id="message" rows="5" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write All the necessary Requirements that will be needing for this Tour"></textarea>
       </div>
 
 {/* Things to keep in Mind */}
 <div className="relative z-0 w-full mb-6 group">
 <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Things To Keep in Mind</label>
-<textarea id="message" rows="5" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write Tips And things to keep in mind for every tourist"></textarea>
+<textarea   value={thingstokeepinMind}
+        onChange={(e)=>setthingstokeepinmind(e.target.value)}  id="message" rows="5" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write Tips And things to keep in mind for every tourist"></textarea>
       </div>
 
 
 
-{/* Perk Highlights*/}
+{/* Included */}
 <div className="relative z-0 w-full mb-6 group">
-<label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Perks</label>
-<textarea id="message" rows="3" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write all The Perks about the Place in this Format eg Guitar,Bornfire,BBQ Nights etc "></textarea>
+<label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Included</label>
+<textarea    value={included}
+        onChange={(e)=>setIncluded(e.target.value)} id="message" rows="3" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write all The things that are included in the Place in this Format eg Guitar,Bornfire,BBQ Nights etc "></textarea>
       </div>
 
 
@@ -268,7 +372,8 @@ const  [addedPhotos,setAddedPhotos] = useState('')
 {/*  Highlights*/}
 <div className="relative z-0 w-full mb-6 group">
 <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Highlights</label>
-<textarea id="message" rows="3" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write all The Places You'll Visit on the way, in this Format eg Kalam,Mahondand Lake etc "></textarea>
+<textarea    value={highlights}
+        onChange={(e)=>setHighlights(e.target.value)} id="message" rows="3" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write all The Places You'll Visit on the way, in this Format eg Kalam,Mahondand Lake etc "></textarea>
       </div>
 
 
@@ -283,9 +388,10 @@ const  [addedPhotos,setAddedPhotos] = useState('')
 
       <button
         type="submit"
-        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        onClick={handleSubmit}
+        className="text-white mt-10 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
       >
-        Submit
+        Add Tour
       </button>
     </form>
 
