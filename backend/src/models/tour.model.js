@@ -21,13 +21,13 @@ const TourSchema = new mongoose.Schema({
         type:Number,
         default:0
     },
-    hotel: String,
    groupSize: Number,
     requirements: [String],
     mapLocation: String,
     highlights: [String],
     thingstokeepinMind:[String],
     gallery: [String],
+    departure:String,
     comments: [{
         userid: String,
         comment: String

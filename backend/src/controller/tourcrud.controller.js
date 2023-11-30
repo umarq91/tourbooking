@@ -3,7 +3,7 @@ import TourModel from "../models/tour.model.js"
 import {customError} from "../utils/CustomError.js"
 import {upload} from "../middlewares/multer.middleware.js"
 import { uploadOnCloudinary } from "../utils/Cloudinary.js"
-
+import {ApiResonse} from "../utils/ApiResponse.js"
 
 // Add Tour
 
@@ -17,7 +17,7 @@ export const addTour = async (req, res, next) => {
     fee,
     description,
     type,
-    hotel,
+    departure,
     groupSize,
     included,
     thingstokeepinMind,
@@ -49,7 +49,7 @@ console.log(req.body);
       },
     });
 
-    res.status(200).json(ApiResonse(200, added, "Tour added"));
+    res.status(200).json(new ApiResonse(200, added, "Tour added"));
   } catch (error) {
     next(error);
   }
@@ -71,7 +71,7 @@ export const tourUpdate = async(req,res,next)=>{
     }
 
     
-      let {tourname,location,city,fee,description,type,hotel,groupSize,included,thingstokeepinMind,requirements,mapLocation,highlights,gallery,duration} = req.body;
+      let {tourname,location,city,fee,description,type,departure,groupSize,included,thingstokeepinMind,requirements,mapLocation,highlights,gallery,duration} = req.body;
    let   requirementsupdated= req.body.requirements.split(',').map((term) => term.trim());
      let   highlightsupdated= req.body.requirements.split(',').map((term) => term.trim());
      let  thingstokeepinMindupdated= req.body.thingstokeepinMind.split(',').map((term) => term.trim());

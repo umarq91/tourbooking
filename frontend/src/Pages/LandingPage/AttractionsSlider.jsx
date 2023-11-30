@@ -31,7 +31,6 @@ const Slick = () => {
     speed: 2000,
     slidesToShow: 3,
     autoplay:true,
-    speed: 2000,
     slidesToScroll: 2,
     nextArrow:<NextArrow/>,
     prevArrow:<PrevArrow/>,
