@@ -24,8 +24,8 @@ const Card = ({ tour }) => {
               <h5 className="mb-2 text-xl font-bold font-poppins line-clamp-3 text-neutral-800 dark:text-neutral-50">
                 {tour.title}
               </h5>
-              <p className="text-base text-neutral-600 text-yellow-600 font-poppins dark:text-neutral-200">
-                Location : <span className="text-lg font-semibold"> {tour.location} </span>
+              <p className="text-base font-light text-neutral-600 text-yellow-600 font-poppins dark:text-neutral-200 text-sm">
+                Location : <span className="text-lg"> {tour.location} </span>
               </p>
             </div>
 
