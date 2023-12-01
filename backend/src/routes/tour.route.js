@@ -3,12 +3,13 @@ const router = express.Router()
 
 import { verifyToken } from "../middlewares/VerifyToken.js"
 import { UploadItems, addTour, getTour, tourDelete, tourUpdate } from "../controller/tourcrud.controller.js"
-import { mostViewdTours, tourAllListing,tourListing } from "../controller/Filtering.controller.js"
+import { latestTours, mostViewdTours, tourAllListing,tourListing } from "../controller/Filtering.controller.js"
 import {upload} from "../middlewares/multer.middleware.js"
 // All , search and Filter
 router.get("/alltours",tourAllListing)
 router.get('/search',tourListing)
 router.get('/mostviewed',mostViewdTours)
+router.get('/latestTours',latestTours)
 // Crud
 router.post("/add",verifyToken,addTour)
 router.get('/:id',getTour)

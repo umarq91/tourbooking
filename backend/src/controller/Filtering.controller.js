@@ -153,7 +153,7 @@ export const mostViewdTours = async(req,res,next)=>{
     // Find tours and sort by views in descending order
     const mostViewedTours = await TourModel.find()
       .sort({ views: -1 })
-      .limit(5); // Adjust the limit as needed
+      .limit(6); // Adjust the limit as needed
 
     res.status(200).json(mostViewedTours);
   } catch (error) {
@@ -161,3 +161,17 @@ export const mostViewdTours = async(req,res,next)=>{
     res.status(500).json({ message: 'Internal Server Error' });
   }
 }
+
+export const latestTours = async (req, res, next) => {
+  try {
+    // Find tours and sort by creation date in descending order
+    const latestTours = await TourModel.find()
+      .sort({ createdAt: -1 }) // Assuming your tour model has a 'createdAt' field
+      .limit(6); // Adjust the limit as needed
+
+    res.status(200).json(latestTours);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+};

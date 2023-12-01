@@ -42,7 +42,7 @@ const TourForm = () => {
       });
       console.log(response);
   
-      if (response.data.success === 'true') {
+      if (response.data.success === true) {
         window.location.href = '/';
       }
     } catch (error) {
@@ -201,7 +201,20 @@ const TourForm = () => {
         <div className="relative z-0 w-full mb-6 flex  gap-3 items-center justify-center">
           <h1 className='font-semibold'>Duration </h1>
           <div className="grid">
+ 
 
+          <label>
+  <input
+    type="radio"
+    value="2 Nights - 3 Days"
+    checked={days === 3}
+    onChange={() => {
+      setDays(3);
+     
+    }}
+  />
+  1 Day Trip
+</label> 
           <label>
   <input
     type="radio"

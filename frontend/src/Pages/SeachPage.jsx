@@ -8,7 +8,7 @@ const SeachPage = () => {
 
           const param=   new URLSearchParams(window.location.search);
           const query=   decodeURIComponent(param.get('searchTerm'))
-         console.log(query);
+      
     },[])
 
 

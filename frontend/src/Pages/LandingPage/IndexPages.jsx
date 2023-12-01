@@ -7,6 +7,8 @@ import Card from "../../Components/Extra/Card";
 import Hero from "../../Components/Layout/Hero";
 import ReactSlick from "./AttractionsSlider";
 import SearchBar from "./SearchBar";
+import MostViewed from "./MostViewed";
+import LatestTours from "./LatestTours";
 
 const IndexPages = () => {
 const {user,setUser} = useContext(UserContext)
@@ -72,41 +74,15 @@ useEffect(()=>{
                   
         </main>
 
-
+     {/* Upcoming */}
+     <LatestTours/>
+     
         {/* Most Viewed */}
-        <section className="mt-10 max-w-screen-2xl mx-auto">
-  <h1 className="text-center text-3xl font-poppins  mt-4 relative">
-    <div className="bg-green-500 inline-block p-2 px-4 text-white font-bold">
-      Most Viewed Tours
-    </div>
-  </h1>
-    <p className="text-lg font-poppins mb-4 text-center"> Take a Look At Most Viewed Tours</p>
-  <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 md:px-14 p-4">
-    <Card />
-    <Card />
-    <Card />
-  </div>
-</section>
+
+<MostViewed/>
 
        
-          {/* Upcoming */}
-          <section className="mt-10 w-full p-2">
-          <h1 className="text-center text-3xl font-poppins  mt-4 relative">
-    <div className="bg-green-500 inline-block p-2 px-4 text-white font-bold">
-    UpComing Tours
-    </div>
-  </h1>
-    <p className="text-lg font-poppins mb-4 text-center"> Take a Look At Upcoming Tours</p>
-  <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-10 md:px-14 p-4">
-    <Card />
-    <Card />
-    <Card />
-    <Card />
-    <Card />
-    <Card />
-
-  </div>
-</section>
+     
       </div>
     </>
   );
