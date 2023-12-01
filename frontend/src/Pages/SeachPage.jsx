@@ -8,12 +8,28 @@ import {useNavigate} from "react-router-dom"
       days:'nolimit',
       budget:'nolimit'
     })
- 
 
       useEffect(() => {
         const param = new URLSearchParams(window.location.search);
-        const query = decodeURIComponent(param.get("searchTerm"));
-      }, []);
+    //    const query = decodeURIComponent(param.get("searchTerm"));
+    const searchTermURL = param.get("searchTerm");
+    const typefromURL = param.get("type");
+    const budgetUrl = param.get("buget");
+    const daysUrl = param.get("days");
+   console.log(param.toString());
+
+    if(searchTermURL || typefromURL || budgetUrl || daysUrl ){
+      setSidebarData({
+        searchTerm:searchTermURL || '',
+        type:typefromURL || 'all',
+         budget:budgetUrl || 'nolimit',
+         days:daysUrl || 'nolimit',
+      })
+    }
+
+      console.log(sidebarData);
+
+      },[ ]);
 
       
       const handlechange = (e) => {

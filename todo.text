@@ -2,7 +2,11 @@
 if a user is signed in and he clicks on burger menu on the right side 
 it should appear a list of Options ( User Profile account etc ) , Not Navbar options 
 
-// Form and Post 
-// Cards for display Things 
-// Search page Design 
-// Filtering 
+// Form and Post DONE
+// Cards for display Things DONE
+// Search page Design  DONE 
+// Filtering DONE  
+
+// Filtering connection  backend 
+// Cards on Search and filter Page 
+// Profile Page
