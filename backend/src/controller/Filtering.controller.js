@@ -94,7 +94,7 @@ export const tourListing = async (req, res, next) => {
     type=req.query.type
   }
 
-  if(req.query.days === undefined || req.query.days ==='all'){
+  if(req.query.days === undefined || req.query.days ==='nolimit'){
     days={$gt:0}
   }else{
     days = {$lte:req.query.days}
