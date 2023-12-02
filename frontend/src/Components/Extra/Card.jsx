@@ -15,9 +15,9 @@ const Card = ({ tour }) => {
             />
           </a>
 {/* Type */}
-    <div className='h-[30px] w-[110px] bg-green-500 absolute top-2 font-poppins text-center flex items-center justify-center '>
+    {/* <div className='h-[30px] w-[110px] bg-green-500 absolute top-2 font-poppins text-center flex items-center justify-center '>
     {tour.type} Tour
-    </div>
+    </div> */}
 
           <div className="content p-2">
             <div className="pt-2">
@@ -36,7 +36,7 @@ const Card = ({ tour }) => {
                 From <span className="font-medium text-lg"> PKR {tour.fee} </span>
               </p>
 
-              <p className="text-base text-neutral-600 dark:text-neutral-200 flex items-center font-poppins">
+              <p className="text-base font-thin text-neutral-600 dark:text-neutral-200 flex items-center font-poppins">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -48,11 +48,11 @@ const Card = ({ tour }) => {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
 
-                Duratin here
+               {tour.duration.days} Days {tour.duration.nights? tour.duration.nights+ ' Nights' : '' }
               </p>
             </div>
           </div>
-          <button className="w-full bg-yellow-400 font-poppins font-bold h-10 hover:scale-105 ease-in transition-all hover:bg-red-600 ">
+          <button className="w-full bg-yellow-400 font-poppins font-light h-10 hover:scale-105 ease-in transition-all hover:bg-yellow-300 ">
             {' '}
             Book Now{' '}
           </button>

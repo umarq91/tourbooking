@@ -1,8 +1,12 @@
   import React, { useEffect, useState } from 'react'
 import {useNavigate} from "react-router-dom"
 import axios from "axios"
+import Card from "../Components/Extra/Card"
   const SeachPage = () => {
     const navigate = useNavigate()
+    const [loading,setloading] = useState(false);
+    const [data,setData] = useState([])
+
     const [sidebarData,setSidebarData] = useState({
       searchTerm:'',
       type:'all',
@@ -15,17 +19,17 @@ import axios from "axios"
     //    const query = decodeURIComponent(param.get("searchTerm"));
     const searchTermURL = param.get("searchTerm");
     const typefromURL = param.get("type");
-    const budgetUrl = param.get("buget");
+    const budgetUrl = param.get("budget");
     const daysUrl = param.get("days");
  
 
-    if(searchTermURL || typefromURL || budgetUrl || daysUrl ){
+    if (searchTermURL || typefromURL || budgetUrl || daysUrl) {
       setSidebarData({
-        searchTerm:searchTermURL || '',
-        type:typefromURL || 'all',
-         budget:budgetUrl || 'nolimit',
-         days:daysUrl || 'nolimit',
-      })
+        searchTerm: searchTermURL || '',
+        type: typefromURL || 'all',
+        budget: budgetUrl || 'nolimit', // Corrected parameter name
+        days: daysUrl || 'nolimit',
+      });
     }
 
 
@@ -33,9 +37,13 @@ import axios from "axios"
     console.log(searchQuery);
 
     const fetchListing = async () => {
+      setloading(true)
       try {
         const response = await axios.get(`api/tour/search?${searchQuery}`);
         // Handle the response data as needed
+        setData(response.data)
+        setloading(false)
+  
       } catch (error) {
         console.error('Error fetching listing:', error);
       }
@@ -81,9 +89,10 @@ fetchListing()
       };
       
 
+
     return <div className="mt-20 flex flex-col md:flex-row font-medium">
 
-      <div className="p-7 border-b-2 md:border-r-2 md:min-h-screen">
+      <div className="p-7 border-b-2 md:border-r-2 md:min-h-screen md:w-1/3">
         <form onSubmit={handleSubmit} className='flex flex-col gap-8'>
             <div className="flex items-center  gap-2">
               <label className='whitespace-nowrap'> Search Term: </label>
@@ -132,7 +141,7 @@ fetchListing()
               <select id='budget' className='border rounded-lg p-2' onChange={handlechange} > 
             <option className='' value='nolimit'> No Limit </option>
             <option className='' value='50000'> PKR 50,000 </option>
-            <option className='' value='50000'> PKR 25,000 </option>
+            <option className='' value='25000'> PKR 25,000 </option>
             <option className='' value='15000'> PKR 15,000 </option>
             <option className='' value='10000'> PKR 10,000 </option>
             <option className='' value='5000'> PKR 5,000 </option>
@@ -145,8 +154,8 @@ fetchListing()
               <select id='days' className='border rounded-lg p-2'  onChange={handlechange} > 
             <option className='' value='nolimit'> No Limit </option>
             <option className='' value={1}> 1 Day Trip </option>
-            <option className='' value={3}> 3 Days trip</option>
-            <option className='' value={7}> 7 Days Trip </option>
+            <option className='' value={3}> 3 Days or less</option>
+            <option className='' value={7}> 7 Days or less</option>
   
         </select>
             </div>
@@ -161,9 +170,24 @@ fetchListing()
 
 
       {/* Listing */}
-      <div className="text-3xl font-semibold border-b-1 p-3 text-slate-700 mt-5">
+      <div className="text-3xl font-semibold border-b-1 p-3 text-slate-700 mt-5 flex-3">
         <h1> Listing Results </h1>
-      
+
+        {loading && (
+          <h1 className='font-semibold text-3xl text-center mt-10 font-poppins'> Loading ....</h1>
+        )}
+        {data.length==0 && (
+          <h1 className='font-semibold text-3xl text-center w-full mt-10 font-poppins'>No Results Found</h1>
+        )}
+
+<div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2   md:px-14 p-4">
+{!loading && data.length > 0 && 
+
+  data.map((item) => (
+    <Card key={item.id} tour={item} />
+  ))
+}
+  </div>
       </div>
 
     </div>;

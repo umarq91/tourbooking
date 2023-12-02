@@ -77,7 +77,6 @@ export const tourAllListing = async (req, res, next) => {
 
 // Search and Filter
 export const tourListing = async (req, res, next) => {
-console.log(req.query);
   let searchTerm;
   let feefilter = {};
   let type;
@@ -134,7 +133,6 @@ try {
       'duration.days': days
     };
   }
- console.log(query);
     const listings = await TourModel.find(query).sort({
       [sort]: order,
   
