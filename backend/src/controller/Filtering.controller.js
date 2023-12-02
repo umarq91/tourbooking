@@ -7,6 +7,7 @@ import {customError} from "../utils/CustomError.js"
 
 // All Listings
 export const tourAllListing = async (req, res, next) => {
+
   let feefilter = {};
   let type;
   let days;
@@ -57,7 +58,7 @@ export const tourAllListing = async (req, res, next) => {
       'duration.days': days
     };
   }
-  console.log(query);
+  // console.log(query);
 
   try {
     const listings = await TourModel.find(query).sort({
@@ -76,13 +77,15 @@ export const tourAllListing = async (req, res, next) => {
 
 // Search and Filter
 export const tourListing = async (req, res, next) => {
+console.log(req.query);
   let searchTerm;
   let feefilter = {};
   let type;
   let days;
 
 
-
+try {
+  
   if (req.query.searchTerm !== undefined) {
     searchTerm = req.query.searchTerm;
   }
@@ -101,8 +104,8 @@ export const tourListing = async (req, res, next) => {
   }
 
   // Check if fee is provided in the query and is a valid number
-  if (req.query.fee !== undefined) {
-    let queryfee = req.query.fee;
+  if (req.query.budget !== undefined && req.query.budget !== 'nolimit') {
+    let queryfee = req.query.budget;
 
     // Use $lte to filter listings with a fee less than or equal to the provided value
     feefilter = { $lte: queryfee };
@@ -125,24 +128,22 @@ export const tourListing = async (req, res, next) => {
         { tourname: { $regex: searchTerm, $options: "i" } },
         { city: { $regex: searchTerm, $options: "i" } },
         { description: { $regex: searchTerm, $options: "i" } },
-
       ],
       fee: feefilter,
       type,
       'duration.days': days
     };
   }
-  console.log(query);
-
-  try {
+ console.log(query);
     const listings = await TourModel.find(query).sort({
       [sort]: order,
-    });
-
+  
+    })
     res.json(listings);
   } catch (error) {
-    next(error);
+  next(error)
   }
+ 
 };
 
 

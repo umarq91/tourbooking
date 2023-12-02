@@ -1,5 +1,6 @@
   import React, { useEffect, useState } from 'react'
 import {useNavigate} from "react-router-dom"
+import axios from "axios"
   const SeachPage = () => {
     const navigate = useNavigate()
     const [sidebarData,setSidebarData] = useState({
@@ -16,7 +17,7 @@ import {useNavigate} from "react-router-dom"
     const typefromURL = param.get("type");
     const budgetUrl = param.get("buget");
     const daysUrl = param.get("days");
-   console.log(param.toString());
+ 
 
     if(searchTermURL || typefromURL || budgetUrl || daysUrl ){
       setSidebarData({
@@ -27,9 +28,23 @@ import {useNavigate} from "react-router-dom"
       })
     }
 
-      console.log(sidebarData);
 
-      },[ ]);
+    const searchQuery = param.toString()
+    console.log(searchQuery);
+
+    const fetchListing = async () => {
+      try {
+        const response = await axios.get(`api/tour/search?${searchQuery}`);
+        // Handle the response data as needed
+      } catch (error) {
+        console.error('Error fetching listing:', error);
+      }
+    };
+
+fetchListing()
+    
+   
+      },[window.location.search]);
 
       
       const handlechange = (e) => {
@@ -114,7 +129,7 @@ import {useNavigate} from "react-router-dom"
             {/* Budget */}
             <div className="flex items-center gap-2">
               <label> Budget: </label>
-              <select id='budget' className='border rounded-lg p-2' onChange={handlechange} defaultValue={"nolimit"}> 
+              <select id='budget' className='border rounded-lg p-2' onChange={handlechange} > 
             <option className='' value='nolimit'> No Limit </option>
             <option className='' value='50000'> PKR 50,000 </option>
             <option className='' value='50000'> PKR 25,000 </option>
@@ -127,7 +142,7 @@ import {useNavigate} from "react-router-dom"
             {/* Days */}
             <div className="flex items-center gap-2">
               <label> Days Limit: </label>
-              <select id='days' className='border rounded-lg p-2'  onChange={handlechange} defaultValue={"nolimit"}> 
+              <select id='days' className='border rounded-lg p-2'  onChange={handlechange} > 
             <option className='' value='nolimit'> No Limit </option>
             <option className='' value={1}> 1 Day Trip </option>
             <option className='' value={3}> 3 Days trip</option>

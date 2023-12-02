@@ -171,7 +171,7 @@ const TourForm = () => {
         <label>
         <input
           type="radio"
-          value="Family"
+          value="family"
           checked={type === 'Family'}
           onChange={()=>setType(event.target.value)}
         />
@@ -181,7 +181,7 @@ const TourForm = () => {
       <label>
         <input
           type="radio"
-          value="Friends"
+          value="friends"
           checked={type === 'Friends'}
           onChange={()=>setType(event.target.value)}
         />
@@ -190,7 +190,7 @@ const TourForm = () => {
        <label>
         <input
           type="radio"
-          value="Couple"
+          value="couple"
           checked={type === 'Couple'}
           onChange={()=>setType(event.target.value)}
         />
