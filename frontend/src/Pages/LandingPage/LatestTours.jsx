@@ -23,7 +23,7 @@ const LatestTours = () => {
     </div>
   </h1>
     <p className="text-lg font-poppins mb-4 text-center"> Take a Look At Latest Upcoming Tours</p>
-<div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 md:px-14 p-4">
+<div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3  md:px-14 p-4 ">
 
 {data.map((tour) => (
  <Card  key={tour.id} tour={tour}/>

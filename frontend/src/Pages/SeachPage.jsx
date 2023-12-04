@@ -170,13 +170,14 @@ fetchListing()
 
 
       {/* Listing */}
-      <div className="text-3xl font-semibold border-b-1 p-3 text-slate-700 mt-5 flex-3">
-        <h1> Listing Results </h1>
+      <div className="text-3xl font-semibold border-b-1 p-3  mt-5 flex-1 min-h-screen flex flex-col">
+        <h1 className='font-poppins text-3xl text-center border-y-2 tracking-[1rem]'> TOURS </h1>
 
         {loading && (
           <h1 className='font-semibold text-3xl text-center mt-10 font-poppins'> Loading ....</h1>
         )}
-        {data.length==0 && (
+
+        {data.length==0 && !loading && (
           <h1 className='font-semibold text-3xl text-center w-full mt-10 font-poppins'>No Results Found</h1>
         )}
 
@@ -188,8 +189,9 @@ fetchListing()
   ))
 }
   </div>
-      </div>
 
+
+      </div>
     </div>;
   }
 

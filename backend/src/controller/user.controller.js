@@ -5,8 +5,9 @@ import bcrypt from "bcrypt"
 
 
 export const userUpdate = async (req, res, next) => {
+  console.log(req.body);
   if (req.user.id !== req.params.id) return next(customError(401, "You can only update Your Account"));
-
+console.log("req coming");
   try {
     if (req.body.password) {
       req.body.password = bcrypt.hashSync(req.body.password, salt);
@@ -41,4 +42,19 @@ export const userDelete=async(req,res,next)=>{
   } catch (error) {
     next(error)
   }
+}
+
+export const getUserInfo = async(req,res,next)=>{
+ let {id} = req.user
+try {
+  const user = await userModel.findById(id)
+  if(!user) returnnext(customError(404, "User not Found"));
+
+  const {email,profile,username,_id} = user;
+  const userDataToSend = { email, profile, username, _id };
+  res.json(userDataToSend)
+} catch (error) {
+  next(error)
+}
+
 }

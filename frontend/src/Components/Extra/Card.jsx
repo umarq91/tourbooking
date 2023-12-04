@@ -4,7 +4,7 @@ const Card = ({ tour }) => {
   const title =
     "Big Title That I'm going to write is for You BABY I'm going to write is for You BABY";
   return (
-    <div className="block relative  w-[90%]  h-[430px] shadow hover:cursor-pointer overflow-hidden rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 hover:scale-105 transition transform ease-in">
+    <div className="block relative  w-[90%]  shadow hover:cursor-pointer overflow-hidden rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 hover:scale-105 transition transform ease-in">
     
         <div key={tour.id}>
           <a href="#!">
@@ -22,7 +22,7 @@ const Card = ({ tour }) => {
           <div className="content p-2">
             <div className="pt-2">
               <h5 className="mb-2 text-xl font-bold font-poppins line-clamp-3 text-neutral-800 dark:text-neutral-50">
-                {tour.title}
+                {tour.tourname}
               </h5>
               <p className="text-base font-light text-neutral-600 text-yellow-600 font-poppins dark:text-neutral-200 text-sm">
                 Location : <span className="text-lg"> {tour.location} </span>

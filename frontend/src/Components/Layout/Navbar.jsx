@@ -71,13 +71,13 @@ const handlelogout = ()=>{
           </div>
         </Link>
       ) : (
-        <div className="hidden lg:block" onClick={toggleMenu}>
+        <Link to={'/account/profile'} > 
           <div className="flex gap-3 justify-between py-3 px-6 bg-gray-800 rounded-full text-white items-center hover:bg-gray-700 cursor-pointer ">
             {/* <img src={user.profile} className="rounded-full h-6 w-6"/> */}
             <h3 className="font-light text-sm"> {user?.username} </h3>
             <CiMenuBurger />
           </div>
-        </div>
+      </Link>
       )}
 
       {/* Mobile */}

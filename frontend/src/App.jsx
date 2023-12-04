@@ -11,6 +11,7 @@ import PrivateRoutes from './Context/PrivateRoutes.jsx';
 import AddTour from './Pages/account/AddTour.jsx';
 import Navbar from './Components/Layout/Navbar.jsx';
 import SearchPage from "./Pages/SeachPage.jsx"
+import { Profile } from './Pages/account/profile.jsx';
 axios.defaults.baseURL= "http://127.0.0.1:4000"
 axios.defaults.withCredentials= true
 
@@ -32,6 +33,8 @@ const App = () => {
     <Route  element={<PrivateRoutes />}>
         <Route path="/profile" element={<ProfilePage />}/>
         <Route path="/account/addtour" element={<AddTour />}/>
+        <Route path="/account/profile" element={<Profile />}/>
+
 
     </Route>
 
