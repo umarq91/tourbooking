@@ -80,7 +80,7 @@ fetchListing()
       
 
 
-    return <div className="mt-11 flex flex-col  font-medium">
+    return <div className="mt-11 flex flex-col  font-medium bg-gray-100">
 
       <div className="p-2 lg:p-7 border-b-2 md:border-r-2 ">
         <form onSubmit={handleSubmit} className='flex flex-wrap  gap-3'>
@@ -157,7 +157,7 @@ fetchListing()
             </div>
 
           {/* Button */}
-          <button className='bg-blue-500 w-1/3 md:w-1/5 hover:opacity-95 text-white p-3 rounded-lg'>
+          <button className='bg-gray-800 w-1/3 md:w-1/5 hover:opacity-95 text-white p-2 rounded-lg'>
  Filter
           </button>
           </form>
