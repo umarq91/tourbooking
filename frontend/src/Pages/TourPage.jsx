@@ -56,11 +56,6 @@ fetchListing()
       const handlechange = (e) => {
       
         const { id, type, value, checked } = e.target;
-
-        // if (id === 'all' || id === 'friends' || id === 'family' || id === 'culture' || id === 'open' || id === 'couple') {
-        //   setSidebarData({ ...sidebarData, type: id });
-        // }
-
      
 
         if (id === 'budget' || id === 'days' || id==='type') {
@@ -85,7 +80,7 @@ fetchListing()
       
 
 
-    return <div className="mt-20 flex flex-col  font-medium">
+    return <div className="mt-11 flex flex-col  font-medium">
 
       <div className="p-2 lg:p-7 border-b-2 md:border-r-2 ">
         <form onSubmit={handleSubmit} className='flex flex-wrap  gap-3'>
@@ -162,16 +157,21 @@ fetchListing()
             </div>
 
           {/* Button */}
-          <button className='bg-gray-700 w-1/3 md:w-1/5 hover:opacity-95 text-white p-3 rounded-lg'>
+          <button className='bg-blue-500 w-1/3 md:w-1/5 hover:opacity-95 text-white p-3 rounded-lg'>
  Filter
           </button>
           </form>
       </div>
 
 
+        <span className='font-poppins text-1xl text-center   tracking-[1px] text-red-600'> {data.length===1? data.length + ' Tour Result' : data.length + ' Tour Results' }  </span>
       {/* Listing */}
-      <div className="text-3xl font-semibold border-b-1 p-3  mt-5 flex-1 min-h-screen flex flex-col">
-        <h1 className='font-poppins text-3xl text-center border-y-2 tracking-[1rem]'> TOURS </h1>
+      <div className="text-3xl font-semibold border-b-1 p-3  flex-1 min-h-screen flex flex-col">
+        {
+          data.length > 0 &&
+          <h1 className='font-poppins text-3xl text-center  tracking-[1px]'> TOURS </h1>
+        }
+
 
         {loading && (
           <h1 className='font-semibold text-3xl text-center mt-10 font-poppins'> Loading ....</h1>
@@ -181,7 +181,7 @@ fetchListing()
           <h1 className='font-semibold text-3xl text-center w-full mt-10 font-poppins'>No Results Found</h1>
         )}
 
-<div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2   md:px-14 p-4">
+<div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3   md:px-14 p-4">
 {!loading && data.length > 0 && 
 
   data.map((item) => (
