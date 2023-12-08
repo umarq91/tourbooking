@@ -170,3 +170,17 @@ export const UploadItems = async (req, res, next) => {
 
   res.status(200).json(cloudinaryUrls);
 };
+
+
+
+export const getUserTours=async(req,res,next)=>{
+
+  try {
+    
+   const data=  await TourModel.find({postedBy:req.user.id})
+   res.json(data)
+  } catch (error) {
+    
+  }
+
+}
