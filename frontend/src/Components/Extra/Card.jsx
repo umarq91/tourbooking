@@ -1,9 +1,9 @@
 import React from 'react';
-
+import { Link } from "react-router-dom"
 const Card = ({ tour }) => {
 
   return (
-    <div className="block relative  mt-10 w-[90%] h-[450px]   shadow hover:cursor-pointer overflow-hidden rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 hover:scale-105 transition transform ease-in">
+    <div className="block relative  mt-10 w-[90%] h-[460px]   shadow hover:cursor-pointer overflow-hidden rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 hover:scale-105 transition transform ease-in">
     
         <div key={tour.id}>
             <img
@@ -25,7 +25,7 @@ const Card = ({ tour }) => {
 
             <div className="pt-2 flex justify-between items-center justify-center font-poppins">
               <p className="text-sm text-neutral-600 dark:text-neutral-200">
-                 <span className="font-medium text-lg"> PKR {tour.fee} / person</span> 
+                 <span className="font-semibold text-[16px] text-green-600"> PKR {tour.fee} / person</span> 
               </p>
 
               <p className="text-sm font-thin text-neutral-600 dark:text-neutral-200 flex items-center font-poppins">
@@ -48,9 +48,12 @@ const Card = ({ tour }) => {
             {' '}
             Book Now{' '}
           </button> */}
+          {/* This is encoded to add hyphen - instead of %20 in spaces */}
+        <Link to={`/tour/${encodeURIComponent(tour.tourname).replace(/%20/g, '-')}`}>
           <button className='text-sm m-2 shadow-lg hover:opacity-90 bg-gray-700  rounded-full  font-normal text-white p-2 ml-2 font-poppins'>
             View Details
           </button>
+          </Link>
         </div>
   
     </div>

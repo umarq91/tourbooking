@@ -13,6 +13,7 @@ import Navbar from './Components/Layout/Navbar.jsx';
 import SearchPage from "./Pages/SeachPage.jsx"
 import { Profile } from './Pages/account/profile.jsx';
 import TourPage from './Pages/TourPage.jsx';
+import { TourDetailPage } from './Pages/TourDetailPage.jsx';
 axios.defaults.baseURL= "http://127.0.0.1:4000"
 axios.defaults.withCredentials= true
 
@@ -30,6 +31,8 @@ const App = () => {
         <Route path="/sign-in" element={<SignIn />}/>
         <Route path="/search" element={<SearchPage />}/>
         <Route path="/tours" element={<TourPage />}/>
+        <Route path="/tour/:name" element={<TourDetailPage />}/>
+
 
 
 

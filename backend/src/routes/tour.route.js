@@ -12,7 +12,7 @@ router.get('/mostviewed',mostViewdTours)
 router.get('/latestTours',latestTours)
 // Crud
 router.post("/add",verifyToken,addTour)
-router.get('/:id',getTour)
+router.get('/:name',getTour)
 router.put('/update/:id',verifyToken,tourUpdate)
 router.delete('/delete/:id',verifyToken,tourDelete)
 
