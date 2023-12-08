@@ -177,7 +177,7 @@ export const getUserTours=async(req,res,next)=>{
 
   try {
     
-   const data=  await TourModel.find({postedBy:req.user.id})
+   const data=  await TourModel.find({postedBy:req.user.id}).sort({ createdAt: -1 })
    res.json(data)
   } catch (error) {
     

@@ -42,6 +42,8 @@ const App = () => {
         <Route path="/account/addtour" element={<AddTour />}/>
         <Route path="/account/profile" element={<Profile />}/>
         <Route path="/account/myuploads" element={<MyUploads />}/>
+        <Route path="/account/myuploads/update/:id" element={<MyUploads />}/>
+
 
 
 
