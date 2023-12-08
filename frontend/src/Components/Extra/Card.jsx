@@ -7,7 +7,7 @@ const Card = ({ tour }) => {
     
         <div key={tour.id}>
             <img
-              className="rounded-t-lg w-full max-h-[60%] object-cover "
+              className="rounded-t-lg w-full overflow-hidden max-h-[60%] object-cover "
               src={tour?.gallery[0] || "https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg"}
               alt=""
             />
