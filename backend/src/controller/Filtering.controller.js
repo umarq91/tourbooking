@@ -126,6 +126,7 @@ try {
       'duration.days': days
     };
   }
+
     const listings = await TourModel.find(query).sort({
       [sort]: order,
   

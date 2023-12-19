@@ -40,7 +40,7 @@ const TourForm = () => {
         
         highlights,
       });
-      console.log(response);
+     
   
       if (response.data.success === true) {
         window.location.href = '/';
@@ -168,36 +168,57 @@ const TourForm = () => {
       <div className="grid md:grid-cols-2 md:gap-6">
       <div className="relative z-0 w-full mb-6 flex  gap-3 items-center justify-center">
           <h1 className='font-semibold'>Type: </h1>
-        <label>
-        <input
-          type="radio"
-          value="family"
-          checked={type === 'Family'}
-          onChange={()=>setType(event.target.value)}
-        />
-       Family
-      </label>
+          <label>
+  <input
+    type="radio"
+    value="family"
+    checked={type === 'family'}
+    onChange={(event) => setType(event.target.value)}
+  />
+  Family
+</label>
 
-      <label>
-        <input
-          type="radio"
-          value="friends"
-          checked={type === 'Friends'}
-          onChange={()=>setType(event.target.value)}
-        />
-       Freinds
-      </label>
-       <label>
-        <input
-          type="radio"
-          value="couple"
-          checked={type === 'Couple'}
-          onChange={()=>setType(event.target.value)}
-        />
-       Couple
-      </label>
+<label>
+  <input
+    type="radio"
+    value="friends"
+    checked={type === 'friends'}
+    onChange={(event) => setType(event.target.value)}
+  />
+  Friends
+</label>
+
+<label>
+  <input
+    type="radio"
+    value="couple"
+    checked={type === 'couple'}
+    onChange={(event) => setType(event.target.value)}
+  />
+  Couple
+</label>
+<label>
+  <input
+    type="radio"
+    value="culture"
+    checked={type === 'culture'}
+    onChange={(event) => setType(event.target.value)}
+  />
+  Culture
+</label>
+<label>
+  <input
+    type="radio"
+    value="open"
+    checked={type === 'open'}
+    onChange={(event) => setType(event.target.value)}
+  />
+ Open
+</label>
         </div>
 
+
+{/* Duration */}
         <div className="relative z-0 w-full mb-6 flex  gap-3 items-center justify-center">
           <h1 className='font-semibold'>Duration </h1>
           <div className="grid">
