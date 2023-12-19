@@ -50,8 +50,8 @@ try {
   const user = await userModel.findById(id)
   if(!user) returnnext(customError(404, "User not Found"));
 
-  const {email,profile,username,_id} = user;
-  const userDataToSend = { email, profile, username, _id };
+  const {email,profile,username,_id,role} = user;
+  const userDataToSend = { email, profile, username, _id,role };
   res.json(userDataToSend)
 } catch (error) {
   next(error)

@@ -58,11 +58,11 @@ export const userVerification = (req, res) => {
   if (token) {
     jwt.verify(token, process.env.jwtSecret, {}, async (err, usertoken) => {
       if (err) throw err;
-      const { username, email, _id, profile } = await UserModel.findById(
+      const { username, email, _id, profile,role } = await UserModel.findById(
         usertoken.id
       );
 
-      res.json({ email, _id, username, profile });
+      res.json({ email, _id, username, profile,role });
     });
   }
 };

@@ -164,7 +164,7 @@ const TourForm = () => {
 
 
 
-{/* Radio Buttons for type and duration */}
+                        {/* Radio Buttons for type and duration */}
       <div className="grid md:grid-cols-2 md:gap-6">
       <div className="relative z-0 w-full mb-6 flex  gap-3 items-center justify-center">
           <h1 className='font-semibold'>Type: </h1>
@@ -197,6 +197,7 @@ const TourForm = () => {
   />
   Couple
 </label>
+
 <label>
   <input
     type="radio"
@@ -206,6 +207,7 @@ const TourForm = () => {
   />
   Culture
 </label>
+
 <label>
   <input
     type="radio"
@@ -218,7 +220,8 @@ const TourForm = () => {
         </div>
 
 
-{/* Duration */}
+                            {/* Duration */}
+
         <div className="relative z-0 w-full mb-6 flex  gap-3 items-center justify-center">
           <h1 className='font-semibold'>Duration </h1>
           <div className="grid">
@@ -227,11 +230,12 @@ const TourForm = () => {
           <label>
   <input
     type="radio"
-    value="2 Nights - 3 Days"
-    checked={days === 3}
+    value="1day"
+    checked={days === 1}
     onChange={() => {
-      setDays(3);
-     
+      setDays(1);
+      setNights(0);
+
     }}
   />
   1 Day Trip
@@ -306,7 +310,7 @@ const TourForm = () => {
 
 
 
-{/* Hotel And Map Location */}
+                        {/* Hotel And Map Location */}
 <div className="grid md:grid-cols-2 md:gap-6">
         <div className="relative z-0 w-full mb-6 group">
           <input
@@ -349,7 +353,7 @@ const TourForm = () => {
       </div>
 
 
-{/* Description Text-Area */}
+                        {/* Description Text-Area */}
 <div className="relative z-0 w-full mb-6 group">
 <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
 <textarea    value={description}
@@ -366,14 +370,15 @@ const TourForm = () => {
 </div>
     <hr/>
 
-{/* Requirements */}
+                            {/* Requirements */}
+
 <div className="relative z-0 w-full mb-6 group">
 <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Requirements</label>
 <textarea    value={requirements}
         onChange={(e)=>setRequirements(e.target.value)} id="message" rows="5" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write All the necessary Requirements that will be needing for this Tour"></textarea>
       </div>
 
-{/* Things to keep in Mind */}
+                        {/* Things to keep in Mind */}
 <div className="relative z-0 w-full mb-6 group">
 <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Things To Keep in Mind</label>
 <textarea   value={thingstokeepinMind}
@@ -382,7 +387,7 @@ const TourForm = () => {
 
 
 
-{/* Included */}
+                              {/* Included */}
 <div className="relative z-0 w-full mb-6 group">
 <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Included</label>
 <textarea    value={included}
@@ -391,7 +396,8 @@ const TourForm = () => {
 
 
 
-{/*  Highlights*/}
+                              
+                              {/*  Highlights*/}
 <div className="relative z-0 w-full mb-6 group">
 <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Highlights</label>
 <textarea    value={highlights}

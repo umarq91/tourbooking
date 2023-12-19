@@ -17,7 +17,7 @@ export default function UserContextProvider({ children }) {
           
           if (response.status === 200) {
             const userData = response.data;
-         
+         console.log(userData);
             setUser(userData);
             setReady(true);
           }
