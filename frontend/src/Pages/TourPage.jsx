@@ -80,7 +80,7 @@ fetchListing()
       
 
 
-    return <div className="mt-11 flex flex-col  font-medium bg-gray-100">
+    return <div className="mt-11 flex flex-col  font-medium ">
 
       <div className="p-2 lg:p-7 border-b-2 md:border-r-2 ">
         <form onSubmit={handleSubmit} className='flex flex-wrap  gap-3'>
