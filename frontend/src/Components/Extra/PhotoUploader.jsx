@@ -64,11 +64,7 @@ const PhotoUploader = ({addedPhotos,onChange}) => {
     return ( 
         <>
         <h1 className="text-center text-bold font-poppins text-3xl my-4"> Gallery </h1>
-           <div className='flex gap-2'>
-                
-                        <input type='text' className="w-full" value={photoLink} onChange={(e)=>setPhotoLink(e.target.value)} placeholder='Add using link...jpg'/> 
-                        <button onClick={addPhotoByLink} className='bg-blue-500 text-white  font-bold boeswe px-4 rounded-2xl'>Add&nbsp;Photo</button>
-                    </div>
+       
 
                     <input type='file' className='hidden' />
 
@@ -105,7 +101,7 @@ const PhotoUploader = ({addedPhotos,onChange}) => {
                                     </div>
                                 );
                             })}
-                            <label className='h-32 text-black  border cursor-pointer flex items-center gap-1 justify-center bg-transparent rounded-2xl  p-8 text-2xl h-32 text-gray-600'>
+                            <label className='h-32 text-black  border border-black border-2 cursor-pointer flex items-center gap-1 justify-center bg-transparent rounded-2xl  p-8 text-2xl h-32 text-gray-600'>
                             <input type='file' multiple className='hidden' onChange={uploadPhoto} />
 
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">

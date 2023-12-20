@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-const MyUploadsCard = ({tour}) => {
+const MyUploadsCard = ({tour,hanldledelete}) => {
 
   return (
     <div className="block relative   mt-10 w-[90%] h-[200px]   shadow hover:cursor-pointer overflow-hidden rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 hover:scale-105 transition transform ease-in">
@@ -41,13 +41,13 @@ const MyUploadsCard = ({tour}) => {
             </div>
           </div>
 
-        <Link to={`/account/myuploads/update/${tour._id}`}>
+        <Link to={`/account/tourform/${tour._id}`}>
           <button className='text-sm m-2 shadow-lg hover:opacity-90 bg-gray-700 px-5 rounded-full  font-normal text-white p-2 ml-2 font-poppins'>
             Update
           </button>
           </Link>
          
-          <button className='text-sm m-2 shadow-lg hover:opacity-90 bg-red-700 px-5 rounded-full  font-normal text-white p-2 ml-2 font-poppins'>
+          <button onClick={()=>hanldledelete(tour._id)} className='text-sm m-2 shadow-lg hover:opacity-90 bg-red-700 px-5 rounded-full  font-normal text-white p-2 ml-2 font-poppins'>
            Delete
           </button>
          

@@ -8,7 +8,7 @@ import IndexPages from "./Pages/LandingPage/IndexPages.jsx"
 import Header from './Components/Layout/Navbar.jsx';
 import ProfilePage from './Pages/ProfilePage.jsx';
 import PrivateRoutes from './Context/PrivateRoutes.jsx';
-import AddTour from './Pages/account/AddTour.jsx';
+import TourFormpage from './Pages/account/TourFormPage.jsx';
 import Navbar from './Components/Layout/Navbar.jsx';
 import SearchPage from "./Pages/SeachPage.jsx"
 import { Profile } from './Pages/account/profile.jsx';
@@ -40,11 +40,21 @@ const App = () => {
 
     <Route  element={<PrivateRoutes />}>
         <Route path="/profile" element={<ProfilePage />}/>
-        <Route path="/account/addtour" element={<AddTour />}/>
         <Route path="/account/profile" element={<Profile />}/>
         <Route path="/account/myuploads" element={<MyUploads />}/>
-        <Route path="/account/myuploads/update/:id" element={<MyUploads />}/>
+
+          {/* Admin Routes */}
+
+          <Route path="/account/tourform/add" element={<TourFormpage />}/>
+        <Route path="/account/tourform/:id" element={<TourFormpage />}/>
+
     </Route>
+
+                  
+      
+        {/* <Route path="/account/myuploads/update/:id" element={<MyUploads />}/> */}
+
+
 
     <Route path="/*" element={<NotFound/>}/>
 

@@ -97,9 +97,10 @@ export const tourUpdate = async(req,res,next)=>{
 
 // Delete Tour
 
-  export const tourDelete = async(req,res)=>{
+  export const tourDelete = async(req,res,next)=>{
 
     const {id} = req.params;
+    
     try {
       const checkUser = await TourModel.findById(id);
       // Check if user is valid
@@ -109,7 +110,8 @@ export const tourUpdate = async(req,res,next)=>{
 
       const updated = await TourModel.findByIdAndDelete(id)
 
-    res.status(200).json({message:"Tour is Deleted"});
+   
+    res.status(200).json(new ApiResonse(200, "Tour added"));
 
     
     
@@ -122,23 +124,41 @@ export const tourUpdate = async(req,res,next)=>{
 // Get Tour 
 
 
-export const getTour = async(req,res)=>{
+export const getTour = async(req,res,next)=>{
   const {name} = req.params;
-  const tourname =  decodeURIComponent(name.replace(/-/g, ' '))
+  try {
+    const tourname =  decodeURIComponent(name.replace(/-/g, ' '))
 
-  const data = await TourModel.findOne({tourname:tourname});
-  
- // Increment the views property by 1
- data.views += 1;
+    const data = await TourModel.findOne({tourname:tourname});
     
- // Save the updated tour
- await data.save();
-
-  res.status(200).json(data)
+   // Increment the views property by 1
+   data.views += 1;
+      
+   // Save the updated tour
+   await data.save();
+  
+    res.status(200).json(data)
+  } catch (error) {
+    next(error)
+  }
+ 
 
 }
 
+export const getTourDetails = async(req,res,next)=>{
+  try {
+    const {id} = req.params;
 
+    const data = await TourModel.findById(id)
+    if(!data) return next(customError(404, "Tour not Found"));
+
+    res.status(200).json(data)
+  } catch (error) {
+    next(error)
+  }
+ 
+
+}
 
 
 export const UploadItems = async (req, res, next) => {

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 const Card = ({ tour }) => {
 
   return (
-    <div className="block relative  mt-10 w-[90%] h-[480px]   shadow hover:cursor-pointer overflow-hidden rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 hover:scale-105 transition transform ease-in">
+    <div className="block relative  mt-10 w-[90%] h-[480px] shadow hover:cursor-pointer overflow-hidden rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 hover:scale-105 transition transform ease-in">
     
         <div key={tour.id}>
 

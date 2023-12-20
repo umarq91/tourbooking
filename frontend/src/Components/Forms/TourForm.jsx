@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PhotoUplaoder from "../Extra/PhotoUploader"
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 const TourForm = () => {
   const [type, setType] = useState('');
   const  [addedPhotos,setAddedPhotos] = useState('')
@@ -18,7 +19,7 @@ const TourForm = () => {
   const [highlights,setHighlights] = useState('')
   const [days, setDays] = useState(0);
   const [nights, setNights] = useState(0);
-  
+  const  {id} = useParams()
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -52,6 +53,40 @@ const TourForm = () => {
   };
 
  
+
+  useEffect(()=>{
+    if(!id) return
+
+    const getDetails = async () => {
+      try {
+        const response = await axios.get('/api/tour/' + id);
+        console.log("responce");
+        console.log(response);
+        const data = response.data;
+
+        setTourname(data.tourname);
+        setType(data.type);
+        setLocation(data.location);
+        setGroupSize(data.groupSize);
+        setFee(data.fee);
+        setNights(data.duration.nights);
+        setDays(data.duration.days);
+        setDeparture(data.departure);
+        setAddedPhotos(data.gallery);
+        setMapLocation(data.mapLocation);
+        setDescription(data.description);
+      } catch (error) {
+        // Handle the error here
+        // window.location.href('/account/addform')
+        window.location.href = '/account/addform/add';
+        // Optionally, set default values or display an error message
+      }
+    };
+    
+    getDetails();
+    
+   
+  },[])
 
   return (
     <>
@@ -373,14 +408,14 @@ const TourForm = () => {
                             {/* Requirements */}
 
 <div className="relative z-0 w-full mb-6 group">
-<label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Requirements</label>
+<label htmlFor="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Requirements</label>
 <textarea    value={requirements}
         onChange={(e)=>setRequirements(e.target.value)} id="message" rows="5" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write All the necessary Requirements that will be needing for this Tour"></textarea>
       </div>
 
                         {/* Things to keep in Mind */}
 <div className="relative z-0 w-full mb-6 group">
-<label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Things To Keep in Mind</label>
+<label htmlFor="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Things To Keep in Mind</label>
 <textarea   value={thingstokeepinMind}
         onChange={(e)=>setthingstokeepinmind(e.target.value)}  id="message" rows="5" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write Tips And things to keep in mind for every tourist"></textarea>
       </div>
@@ -389,7 +424,7 @@ const TourForm = () => {
 
                               {/* Included */}
 <div className="relative z-0 w-full mb-6 group">
-<label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Included</label>
+<label htmlFor="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Included</label>
 <textarea    value={included}
         onChange={(e)=>setIncluded(e.target.value)} id="message" rows="3" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write all The things that are included in the Place in this Format eg Guitar,Bornfire,BBQ Nights etc "></textarea>
       </div>
@@ -399,7 +434,7 @@ const TourForm = () => {
                               
                               {/*  Highlights*/}
 <div className="relative z-0 w-full mb-6 group">
-<label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Highlights</label>
+<label htmlFor="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Highlights</label>
 <textarea    value={highlights}
         onChange={(e)=>setHighlights(e.target.value)} id="message" rows="3" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write all The Places You'll Visit on the way, in this Format eg Kalam,Mahondand Lake etc "></textarea>
       </div>
