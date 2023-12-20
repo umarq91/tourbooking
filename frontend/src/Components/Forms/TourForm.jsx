@@ -20,6 +20,7 @@ const TourForm = () => {
   const [days, setDays] = useState(0);
   const [nights, setNights] = useState(0);
   const  {id} = useParams()
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -38,7 +39,6 @@ const TourForm = () => {
         requirements,
         thingstokeepinMind,
         included,
-        
         highlights,
       });
      
@@ -52,18 +52,43 @@ const TourForm = () => {
     }
   };
 
+ const handleUpdate= async(e)=>{
+  e.preventDefault();
+  try {
+    const response= await axios.put('/api/tour/update/'+id,{
+      type,
+      duration: { days, nights },
+      addedPhotos,
+      tourname,
+      location,
+      groupSize,
+      fee,
+      city,
+      departure,
+      mapLocation,
+      description,
+      requirements,
+      thingstokeepinMind,
+      included,
+      highlights,
+    })
+    if (response.data.success) {
+    window.location.href = '/account/myuploads';
+  }
+  } catch (error) {
+    console.log(error);
+  }
+
  
+ }
 
   useEffect(()=>{
     if(!id) return
 
     const getDetails = async () => {
       try {
-        const response = await axios.get('/api/tour/' + id);
-        console.log("responce");
-        console.log(response);
+        const response = await axios.get('/api/tour/details/' + id);
         const data = response.data;
-
         setTourname(data.tourname);
         setType(data.type);
         setLocation(data.location);
@@ -75,11 +100,11 @@ const TourForm = () => {
         setAddedPhotos(data.gallery);
         setMapLocation(data.mapLocation);
         setDescription(data.description);
+        setCity(data.city)
       } catch (error) {
-        // Handle the error here
-        // window.location.href('/account/addform')
+
         window.location.href = '/account/addform/add';
-        // Optionally, set default values or display an error message
+      
       }
     };
     
@@ -87,6 +112,9 @@ const TourForm = () => {
     
    
   },[])
+
+
+
 
   return (
     <>
@@ -448,14 +476,25 @@ const TourForm = () => {
 
 
 
-
-      <button
-        type="submit"
-        onClick={handleSubmit}
-        className="text-white mt-10 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-      >
-        Add Tour
-      </button>
+{
+  !id ? 
+  <button
+  type="submit"
+  onClick={handleSubmit}
+  className="text-white mt-10 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+>
+  Add Tour
+</button>
+  :
+  <button
+  type="submit"
+  onClick={handleUpdate}
+  className="text-white mt-10 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+>
+  Update Tour
+</button>
+}
+ 
     </form>
 
 

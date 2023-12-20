@@ -14,7 +14,7 @@ router.get('/myTours',verifyToken,getUserTours)
 // Crud
 router.post("/add",verifyToken,addTour)
 //get tour details for details & update
-router.get('/:id',getTourDetails)
+router.get('/details/:id',getTourDetails)
 router.get('/:name',getTour)
 
 router.put('/update/:id',verifyToken,tourUpdate)

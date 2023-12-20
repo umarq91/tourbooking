@@ -50,7 +50,7 @@ const AccountNav = () => {
 
 
            
-            Add Tour
+            Tour Form
             </Link>
  
         </nav>

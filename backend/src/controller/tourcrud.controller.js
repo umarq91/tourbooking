@@ -49,7 +49,7 @@ console.log(req.body);
       },
     });
 
-    res.status(200).json(new ApiResonse(200, added, "Tour added"));
+    res.json(new ApiResonse(200, added, "Tour added"));
   } catch (error) {
     next(error);
   }
@@ -61,7 +61,7 @@ console.log(req.body);
 
 export const tourUpdate = async(req,res,next)=>{
   const {id} = req.params;
-
+console.log("update req");
   
   try {
     const checkUser = await TourModel.findById(id);
@@ -84,7 +84,7 @@ export const tourUpdate = async(req,res,next)=>{
       }
     },{ new : true}
     );
-    res.status(200).json({message:"Tour is Updated"});
+    res.json(new ApiResonse(200, updated, "Tour updated"));
 
 
    
@@ -128,6 +128,7 @@ export const getTour = async(req,res,next)=>{
   const {name} = req.params;
   try {
     const tourname =  decodeURIComponent(name.replace(/-/g, ' '))
+    console.log(tourname);
 
     const data = await TourModel.findOne({tourname:tourname});
     
@@ -144,6 +145,7 @@ export const getTour = async(req,res,next)=>{
  
 
 }
+
 
 export const getTourDetails = async(req,res,next)=>{
   try {
