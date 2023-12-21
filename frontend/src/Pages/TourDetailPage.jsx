@@ -1,21 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import 'react-image-gallery/styles/css/image-gallery.css'
 import axios from "axios"
+import ImageGallery from 'react-image-gallery'
 
 
 export const TourDetailPage = () => {
     const {id} = useParams()
-    const photos = [
-      { src: "https://fastly.picsum.photos/id/1019/1000/600.jpg?hmac=RLObZGa5jJSQPlH-G_fCwArdojutIz3sRU2w0XwV4Fk"},
-      { src: "https://fastly.picsum.photos/id/1019/1000/600.jpg?hmac=RLObZGa5jJSQPlH-G_fCwArdojutIz3sRU2w0XwV4Fk" },
-     { src: "https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?cs=srgb&dl=pexels-james-wheeler-414612.jpg&fm=jpg" },
-      { src: "https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?cs=srgb&dl=pexels-james-wheeler-414612.jpg&fm=jpg"},
-      
-    ];
     const images = [
-      { src: "https://picsum.photos/id/1018/1920/1080/", aspect_ratio: 16/9, name: 1 },
-      { src: "https://picsum.photos/id/1015/1920/1080/", aspect_ratio: 16/9, name: 2 },
-  ]
+      {
+        original: "https://picsum.photos/id/1018/1000/600/",
+        thumbnail: "https://picsum.photos/id/1018/250/150/",
+      },
+      {
+        original: "https://picsum.photos/id/1015/1000/600/",
+        thumbnail: "https://picsum.photos/id/1015/250/150/",
+      },
+      {
+        original: "https://picsum.photos/id/1019/1000/600/",
+        thumbnail: "https://picsum.photos/id/1019/250/150/",
+      },
+    ];
+    
+
   //  const params =  decodeURIComponent(name.replace(/-/g, ' '))
    const [place,setPlace] = useState({})
    const [loading, setLoading] = useState(true);
@@ -231,11 +238,12 @@ export const TourDetailPage = () => {
 
 
            <hr className='border-1 border-gray-300 my-5 md:my-8 ' />
-           <h2 className='text-3xl mb-10'> Gallery </h2>
-           {place.gallery.map((image)=>(
+           <h2 className='text-4xl mb-10 text-center '> Gallery </h2>
 
-            <img src={image} key={image}/>
-           ))}
+           <ImageGallery items={place.gallery.map(image => ({
+          original: image,
+          thumbnail: image, // You can set a different thumbnail if needed
+        }))} />
           
            </div>
                               </div>
