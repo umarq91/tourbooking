@@ -125,12 +125,13 @@ console.log("update req");
 
 
 export const getTour = async(req,res,next)=>{
-  const {name} = req.params;
+  // const {name} = req.params;
+  const {id} = req.params
   try {
-    const tourname =  decodeURIComponent(name.replace(/-/g, ' '))
-    console.log(tourname);
+    // const tourname =  decodeURIComponent(name.replace(/-/g, ' ')).trim()
 
-    const data = await TourModel.findOne({tourname:tourname});
+
+    const data = await TourModel.findById(id);
     
    // Increment the views property by 1
    data.views += 1;

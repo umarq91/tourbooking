@@ -24,6 +24,7 @@ const TourSchema = new mongoose.Schema({
    groupSize: Number,
     requirements: [String],
     mapLocation: String,
+    included:[String],
     highlights: [String],
     thingstokeepinMind:[String],
     gallery: [String],

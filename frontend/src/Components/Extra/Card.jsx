@@ -52,7 +52,7 @@ const Card = ({ tour }) => {
             Book Now{' '}
           </button> */}
           {/* This is encoded to add hyphen - instead of %20 in spaces */}
-        <Link to={`/tour/${encodeURIComponent(tour.tourname).replace(/%20/g, '-')}`}>
+        <Link to={`/tour/${encodeURIComponent(tour._id)}`}>
           <button className='text-sm m-2 shadow-lg hover:opacity-90 bg-gray-700  rounded-full  font-normal text-white p-2 ml-2 font-poppins'>
             View Details
           </button>

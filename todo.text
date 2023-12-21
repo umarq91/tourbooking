@@ -12,9 +12,9 @@ it should appear a list of Options ( User Profile account etc ) , Not Navbar opt
 // Profile Page Done
 // Account navigation Done 
 // Fix the Navbar on small screen when User is logged in DONE
+// Update Place page and feature tip : use UseParams and the same form for Tour add and update DONE
 // My Uploaded Places Page Done
-// add loading in my uploads page before data shows up Done
+// add loading in my uploads page before data showsn      up Done
 // About page
-// Tour Detail page 
-// Add Testimonials and Responsive masonry gallery
-// Update Place page and feature tip : use UseParams and the same form for Tour add and update
+// Tour Detail page Almost Done
+// Add/fix gallery in tour Detail page
