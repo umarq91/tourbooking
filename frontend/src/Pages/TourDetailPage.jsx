@@ -5,6 +5,7 @@ import axios from "axios"
 import ImageGallery from 'react-image-gallery'
 import {UserContext} from "../Context/UserContext"
 import { FaWhatsapp } from "react-icons/fa";
+import BreadCrumbs from '../Components/Extra/BreadCrumbs'
 
 export const TourDetailPage = () => {
     const {id} = useParams()
@@ -76,8 +77,16 @@ const {user} = useContext(UserContext)
             </h1>
           </div>
 
+          <div className='max-w-6xl mx-auto px-10 mt-10'>
+          <BreadCrumbs tour={place?.tourname}/>
+
+          </div>
+
           {/* Details Section */}
           <div className="mx-8 max-w-6xl mx-auto md:flex  px-6 sm:px-16">
+
+
+
             {/* Left Section */}
             <div className="md:w-[70%] font-poppins">
               {/* Duration */}
@@ -96,6 +105,8 @@ const {user} = useContext(UserContext)
                     d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
                   />
                 </svg>
+
+                
 
                 <h3 className="text-xl  ">
                   {" "}
