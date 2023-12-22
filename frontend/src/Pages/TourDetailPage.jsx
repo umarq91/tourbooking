@@ -4,6 +4,7 @@ import 'react-image-gallery/styles/css/image-gallery.css'
 import axios from "axios"
 import ImageGallery from 'react-image-gallery'
 import {UserContext} from "../Context/UserContext"
+import { FaWhatsapp } from "react-icons/fa";
 
 export const TourDetailPage = () => {
     const {id} = useParams()
@@ -76,7 +77,7 @@ const {user} = useContext(UserContext)
           </div>
 
           {/* Details Section */}
-          <div className="mx-8 max-w-6xl mx-auto md:flex  ">
+          <div className="mx-8 max-w-6xl mx-auto md:flex  px-6 sm:px-16">
             {/* Left Section */}
             <div className="md:w-[70%] font-poppins">
               {/* Duration */}
@@ -314,10 +315,10 @@ const {user} = useContext(UserContext)
             </div>
 
             {/* Right Section For Pc */}
-            <div className="mt-10 ml-2 flex flex-col  gap-3 md:absolute top-[280px] right-24">
+            <div className="mt-10 ml-2 flex flex-col  gap-3 md:absolute top-[280px] right-24 items-center">
 
               {/* Booking Card Section */}
-              <div className="border border-2 border-gray-400 h-[480px] w-96">
+              <div className="border h-[480px] w-96 shadow-lg">
                 <div className="h-32 bg-blue-500 font-poppins text-white flex flex-col justify-center items-center pt-8">
                   <h4>Per Person</h4>
                   <h4 className="text-5xl">{place.fee}Rs</h4>
@@ -345,7 +346,12 @@ const {user} = useContext(UserContext)
                  <button className='text-2xl bg-blue-500 px-16 py-4 hover:bg-green-400' > Login to book </button>
                   </Link>
                   :
-                  <button className='text-xl bg-green-500 px-16 py-4 hover:bg-green-400' onClick={()=> handleproceedBooking()}> Proceed Booking </button>
+                  <>
+                  <button className='text-xl bg-green-500 px-16 py-4 hover:bg-green-400 flex  gap-2' onClick={()=> handleproceedBooking()}> 
+                  <FaWhatsapp/>
+                  Proceed Booking </button>
+                 
+                  </>
                 }
                 </div>
 

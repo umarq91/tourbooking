@@ -16,6 +16,7 @@ import TourPage from './Pages/TourPage.jsx';
 import { TourDetailPage } from './Pages/TourDetailPage.jsx';
 import MyUploads from './Pages/account/MyUploads.jsx';
 import NotFound from './Pages/NotFound.jsx';
+import Footer from './Components/Layout/Footer.jsx';
 axios.defaults.baseURL= "http://127.0.0.1:4000"
 axios.defaults.withCredentials= true
 
@@ -34,10 +35,6 @@ const App = () => {
         <Route path="/search" element={<SearchPage />}/>
         <Route path="/tours" element={<TourPage />}/>
         <Route path="/tour/:id" element={<TourDetailPage />}/>
-
-
-
-
     <Route  element={<PrivateRoutes />}>
         <Route path="/profile" element={<ProfilePage />}/>
         <Route path="/account/profile" element={<Profile />}/>
@@ -62,6 +59,7 @@ const App = () => {
           
      
       </Routes>
+      <Footer/>
     </BrowserRouter>
     </UserContextProvider>
   );
